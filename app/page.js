@@ -1,95 +1,90 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import React, { useEffect, useState } from "react";
+import Banner from "./components/Banner";
+import { Divider } from "@mui/material";
+import SingleAvatar from "./components/SingleAvatar";
+import { colleges, professors } from "../public/data/sampledata";
+import SearchBox from "./components/SearchBox";
+// import SearchBox from "./components/searchProf";
 
 export default function Home() {
+
+  const [allySupportsCache, setAllySupportsCache] = useState(null);
+  const [professors, setProfessors] = useState([]);
+  const [universities, setUniversities] = useState([]);
+
+  useEffect(() => {
+    // Fetch ally-supports-cache data from localStorage
+    // const fetchCacheData = () => {
+    //   try {
+    //     const cacheData = localStorage.getItem("ally-supports-cache");
+    //     if (cacheData) {
+    //       setAllySupportsCache(JSON.parse(cacheData));
+    //     } else {
+    //       console.log("No data found in localStorage for 'ally-supports-cache'");
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching data from localStorage:", error);
+    //   }
+    // };
+
+    // Fetch professors data
+    const fetchProfessors = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch professors');
+        }
+        const data = await response.json();
+        setProfessors(data);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    const fetchUniversities = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/universities`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch universities');
+        }
+        const data = await response.json();
+        setUniversities(data);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    // fetchCacheData();
+    fetchUniversities()
+    fetchProfessors();
+  }, []);
+
+  if(allySupportsCache!=null){
+    // console.log("Ally Supports Cache:",JSON.stringify(allySupportsCache));
+  }
+
+  // if(professors!=null){
+  //   console.log(professors);
+  // }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div>
+      <Banner />
+      <div className="sub-container">
+      <SearchBox />
+        {/* <SearchBox /> */}
+        <Divider className="divider" />
+
+        <h3>Top Universities</h3>
+        {/* <SingleAvatar props={colleges} /> */}
+        <SingleAvatar props={universities} />
+        <br />
+        <Divider className="divider" />
+
+        <h3>Top Rated Professors</h3>
+        <SingleAvatar props={professors} />
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
