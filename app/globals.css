@@ -35,6 +35,12 @@ body {
   margin-top: 10px;
 }
 
+.professor-detail-avatar{
+  width: 120px;
+  height: 120px;
+  text-align: center;
+}
+
 .loading{
   display: flex;
   justify-content: center; /* Horizontally center */
@@ -55,11 +61,16 @@ body {
 }
 
 .sub-container {
-  padding: 5px 100px;
+  padding: 5px 160px;
 }
 
 h3 {
   font-weight: 700;
+}
+
+.custom-desktop-link-style{
+  color: #ececec;
+  text-decoration: none !important;
 }
 
 footer{
@@ -71,6 +82,14 @@ footer{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.menubar{
+  margin-left: 135px;
+}
+
+.menubar-items{
+  margin-right: 135px;
 }
 
 footer p{
@@ -98,7 +117,7 @@ footer hr{
   text-align: justify;
 }
 .container{
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 .about p{
@@ -173,12 +192,25 @@ footer hr{
   padding: 20px 10px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 700px) {
   .swiper {
     margin-top: 55px;
   }
 
+  .container{
+    margin-top: 60px;
+  }
+  
+  .menubar{
+    margin-left: 0px;
+  }
+
   .sub-container {
     padding: 5px 25px;
+  }
+
+  .professor-detail-avatar{
+    width: 86px;
+    height: 86px;
   }
 }

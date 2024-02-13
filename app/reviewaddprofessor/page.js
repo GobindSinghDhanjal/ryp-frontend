@@ -11,15 +11,10 @@ const Page = () => {
   const handlePasscodeChange = (e) => {
     setPasscode(e.target.value);
   };
-  
-  // useEffect(() => {
-  //   console.log("Updated professors:", professors);
-  // }, [professors]);
 
   const handleClick = (data)=>{
     const updatedProfessors = professors.filter(professor => professor.id !== data.id);
     setProfessors(updatedProfessors);
-    console.log(professors);
   }
 
   const handleSubmit = (e) => {
@@ -79,7 +74,6 @@ const Page = () => {
     <div className="container">
       <div className="sub-container">
         <h1>Welcome to the secret page!</h1>
-        <p>This content is only visible after entering the correct passcode.</p>
         {/* Render each professor using map function */}
         {professors.map((professor, index) => (
           <ProfileCard

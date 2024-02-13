@@ -5,6 +5,10 @@ import {
   Button,
   Box,
   Autocomplete,
+  InputLabel,
+  FormControl,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import LoadingScreen from "../components/LoadingScreen";
 import SuccessPage from "./SuccessPage";
@@ -34,10 +38,18 @@ const AddProfessor = () => {
     "Ph.D. Scholar",
   ];
 
-  const handleChange = (event, value) => {
+  // const handleChange = (event, value) => {
+  //   setProfessorData((prevData) => ({
+  //     ...prevData,
+  //     [event.target.name]: value || event.target.value,
+  //   }));
+  // };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
     setProfessorData((prevData) => ({
       ...prevData,
-      [event.target.name]: value || event.target.value,
+      [name]: value,
     }));
   };
 
@@ -109,9 +121,8 @@ const AddProfessor = () => {
             required
             margin="normal"
           />
-          <br />
-          <br />
-          <Autocomplete
+       
+          {/* <Autocomplete
             fullWidth
             value={professorData.title}
             onChange={(event, value) => handleChange(event, value)}
@@ -119,17 +130,43 @@ const AddProfessor = () => {
             renderInput={(params) => (
               <TextField {...params} label="Title" name="title" required />
             )}
-          />
-          <br />
-          <Autocomplete
-            fullWidth
-            value={professorData.gender}
-            onChange={(event, value) => handleChange(event, value)}
-            options={genderOptions}
-            renderInput={(params) => (
-              <TextField {...params} label="Gender" name="gender" required />
-            )}
-          />
+          /> */}
+
+          <FormControl sx={{marginTop:2}} fullWidth>
+            <InputLabel id="title-label">Title</InputLabel>
+            <Select
+              labelId="title-label"
+              value={professorData.title}
+              onChange={(event) => handleChange(event)}
+              label="Title"
+              name="title"
+              required
+            >
+              {titleOptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{marginTop:3, marginBottom:1}} fullWidth>
+            <InputLabel id="gender-label">Gender</InputLabel>
+            <Select
+              labelId="gender-label"
+              value={professorData.gender}
+              onChange={(event) => handleChange(event)}
+              label="Gender"
+              name="gender"
+              required
+            >
+              {genderOptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             fullWidth
             label="College"

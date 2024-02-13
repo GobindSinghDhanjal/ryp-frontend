@@ -32,8 +32,6 @@ const navItems = [
   { name: "Contact", icon: "Contact" },
 ];
 
-
-
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -44,17 +42,21 @@ function DrawerAppBar(props) {
 
   const RateYourProfessor = () => {
     const router = useRouter();
-  
+
     const handleClick = () => {
       router.push("/");
     };
-  
+
     return (
-      <div onClick={handleClick} style={{ cursor: 'pointer', userSelect: 'none' }}>
-      <Typography variant="h6" component="div" sx={{ outline: 'none' }}>
-        Rate Your Professor
-      </Typography>
-    </div>
+      <div
+      className="menubar"
+        onClick={handleClick}
+        style={{ width:"60%", cursor: "pointer", userSelect: "none" }}
+      >
+        <Typography variant="h6" component="div" sx={{ outline: "none" }}>
+          Rate Your Professor
+        </Typography>
+      </div>
     );
   };
 
@@ -62,7 +64,7 @@ function DrawerAppBar(props) {
     <Box
       className="drawer"
       onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", userSelect: 'none', outline: 'none' }}
+      sx={{ textAlign: "center", userSelect: "none", outline: "none" }}
     >
       <List>
         <Link className="custom-link-style" href="/">
@@ -145,18 +147,25 @@ function DrawerAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <RateYourProfessor/>
+          <RateYourProfessor />
           {/* <div onClick={handleClick} style={{ cursor: 'pointer' }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Rate Your Professor
           </Typography>
           </div> */}
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button key={item.name} sx={{ color: "#fff" }}>
-                <Link href={item.name}>{item.name}</Link>
-              </Button>
-            ))}
+          <Box className="menubar-items" sx={{ width:"100%", textAlign:"right", display: { xs: "none", sm: "block" } }}>
+            <Button sx={{ color: "#fff" }}>
+              <Link className="custom-desktop-link-style" href="/">Home</Link>
+            </Button>
+            <Button sx={{ color: "#fff" }}>
+              <Link className="custom-desktop-link-style" href="/alluniversities">Universities</Link>
+            </Button>
+            <Button sx={{ color: "#fff" }}>
+              <Link className="custom-desktop-link-style" href="/offers">offers</Link>
+            </Button>
+            <Button  sx={{ color: "#fff" }}>
+              <Link className="custom-desktop-link-style" href="/about">About</Link>
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
