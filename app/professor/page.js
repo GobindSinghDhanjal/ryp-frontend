@@ -7,12 +7,11 @@ import {
   Skeleton,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ProfessorRating from "./ProfessorRating";
 import StudentRating from "./StudentRating";
 import ProfessorSkeleton from "./ProfessorSkeleton";
-import { Suspense } from 'react'
 
 const ProfessorPage = () => {
   const router = useRouter();
@@ -67,46 +66,58 @@ const ProfessorPage = () => {
   };
 
   if (!professor) {
-    return <ProfessorSkeleton />;
+    return (
+      <Suspense>
+        <ProfessorSkeleton />
+      </Suspense>
+    );
   }
 
   return (
     <Suspense>
-    <div className="professor container">
-      <div className="sub-container">
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container alignItems="center" spacing={0}>
-            <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Avatar className="professor-detail-avatar" alt={professor.name} src={professor.image} />
+      <div className="professor container">
+        <div className="sub-container">
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container alignItems="center" spacing={0}>
+              <Grid
+                item
+                xs={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <Avatar
+                  className="professor-detail-avatar"
+                  alt={professor.name}
+                  src={professor.image}
+                />
+              </Grid>
+              <Grid item xs={1}></Grid>
+              <Grid item xs={7}>
+                <h2>{professor.name}</h2>
+                <p>{professor.title}</p>
+                <hr />
+                <h4>
+                  {professor.college.name}, {professor.college.university.name}
+                </h4>
+                <Rating
+                  name="read-only"
+                  value={averageRating}
+                  precision={0.5}
+                  sx={{ display: "flex", fontSize: 16 }}
+                  readOnly
+                />
+                <small>({numberOfRatings} Ratings)</small>
+              </Grid>
             </Grid>
-            <Grid item xs={1}></Grid>
-            <Grid item xs={7}>
-              <h2>{professor.name}</h2>
-              <p>{professor.title}</p>
-              <hr />
-              <h4>
-                {professor.college.name}, {professor.college.university.name}
-              </h4>
-              <Rating
-                name="read-only"
-                value={averageRating}
-                precision={0.5}
-                sx={{ display: "flex", fontSize: 16 }}
-                readOnly
-              />
-              <small>({numberOfRatings} Ratings)</small>
-            </Grid>
-          </Grid>
-        </Box>
-        <br />
-        <hr />
-        <ProfessorRating id={professor._id} />
-        <br />
-        <hr />
-        <h3>Student Ratings</h3>
-        <StudentRating feedback={professor.feedbacks} />
+          </Box>
+          <br />
+          <hr />
+          <ProfessorRating id={professor._id} />
+          <br />
+          <hr />
+          <h3>Student Ratings</h3>
+          <StudentRating feedback={professor.feedbacks} />
+        </div>
       </div>
-    </div>
     </Suspense>
   );
 };

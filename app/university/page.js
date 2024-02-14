@@ -15,7 +15,7 @@
 //   const searchParams = useSearchParams();
 //   const search = searchParams.get("search");
 //   const router = useRouter();
-  
+
 //   const [universityData, setUniversityData] = useState(null);
 //   const [filteredProfessors, setFilteredProfessors] = useState([]);
 
@@ -97,13 +97,13 @@ import Grid from "@mui/material/Grid";
 import SingleAvatar from "../components/SingleAvatar";
 import SingleCard from "../components/SingleCard";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
-import { Suspense } from 'react'
+import { Suspense } from "react";
 
 const Page = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const router = useRouter();
-  
+
   const [universityData, setUniversityData] = useState(null);
   const [filteredProfessors, setFilteredProfessors] = useState([]);
 
@@ -115,21 +115,25 @@ const Page = () => {
       }
 
       try {
-        const universityResponse = await fetch(`http://localhost:3005/universities/${search}`);
+        const universityResponse = await fetch(
+          `http://localhost:3005/universities/${search}`
+        );
         if (!universityResponse.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const universityData = await universityResponse.json();
         setUniversityData(universityData);
 
-        const professorsResponse = await fetch(`http://localhost:3005/professors/byUniversity/${universityData._id}`);
+        const professorsResponse = await fetch(
+          `http://localhost:3005/professors/byUniversity/${universityData._id}`
+        );
         if (!professorsResponse.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const professorsData = await professorsResponse.json();
         setFilteredProfessors(professorsData);
       } catch (error) {
-        console.error('Error fetching university data:', error);
+        console.error("Error fetching university data:", error);
         router.push("/");
       }
     };
@@ -138,28 +142,32 @@ const Page = () => {
   }, [search, router]);
 
   if (!universityData) {
-    return <UniversityPageSkeleton />;
+    return (
+      <Suspense>
+        <UniversityPageSkeleton />;
+      </Suspense>
+    );
   }
 
   return (
     <Suspense>
-    <div className="container">
-      <div className="sub-container">
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container alignItems="center" spacing={0}>
-            <Grid item xs={4}>
-              <SingleAvatar props={[universityData]} />
+      <div className="container">
+        <div className="sub-container">
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container alignItems="center" spacing={0}>
+              <Grid item xs={4}>
+                <SingleAvatar props={[universityData]} />
+              </Grid>
+              <Grid item xs={8}>
+                <h2>{universityData.name}</h2>
+              </Grid>
             </Grid>
-            <Grid item xs={8}>
-              <h2>{universityData.name}</h2>
-            </Grid>
-          </Grid>
-        </Box>
+          </Box>
 
-        <SearchBox />
-        <SingleCard props={filteredProfessors} />
+          <SearchBox />
+          <SingleCard props={filteredProfessors} />
+        </div>
       </div>
-    </div>
     </Suspense>
   );
 };
