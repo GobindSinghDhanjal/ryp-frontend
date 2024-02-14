@@ -51,7 +51,7 @@ function DrawerAppBar(props) {
       <div
       className="menubar"
         onClick={handleClick}
-        style={{ width:"60%", cursor: "pointer", userSelect: "none" }}
+        style={{ width:"100%", cursor: "pointer", userSelect: "none" }}
       >
         <Typography variant="h6" component="div" sx={{ outline: "none" }}>
           Rate Your Professor

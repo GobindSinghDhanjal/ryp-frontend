@@ -3,22 +3,27 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { useRouter } from "next/navigation";
 import { Rating, Skeleton } from "@mui/material";
+import { useState } from "react";
+import LoadingScreen from "./LoadingScreen";
 
 export default function SingleAvatar({ props }) {
   const router = useRouter();
 
+  const [loading,setLoading] = useState(false);
+
   function onButtonClick(prop) {
+    setLoading(true);
     if (prop.title) {
       router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
+      setLoading(false);
     } else {
       router.push(`/university?search=${encodeURIComponent(prop._id)}`);
+      setLoading(false);
     }
   }
 
-  function averageRating(params) {
-    const ratings = professor.feedback.map((feedback) => feedback.rating);
-    const average =
-      ratings.reduce((total, rating) => total + rating, 0) / ratings.length;
+  if(loading){
+    return <LoadingScreen/>
   }
 
   if (!props || !props.length) {

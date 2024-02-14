@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Box, Button, Typography, Rating, TextField } from "@mui/material";
 import BasicAlerts from "../reviewaddprofessor/BasicAlert";
+import SuccessPage from "../addprofessor/SuccessPage";
 
-const ProfessorRating = ({ id }) => {
+const ProfessorRating = ({ id,setSuccess }) => {
   const [value, setValue] = useState(0);
   const [comment, setComment] = useState("");
+
+  // const[success, setSuccess] = useState(false);
 
   const [basicAlert, setBasicAlert] = useState({ display: false, alert: {} });
 
@@ -49,11 +52,11 @@ const ProfessorRating = ({ id }) => {
       console.log("Rating submitted successfully");
       setValue(0);
       setComment("");
+      setSuccess(true);
     } catch (error) {
       console.error("Error submitting rating:", error.message);
     }
   };
-  
 
   return (
     <Box>
