@@ -49,11 +49,11 @@ function DrawerAppBar(props) {
 
     return (
       <div
-      className="menubar"
+      className="menubar custom-link"
         onClick={handleClick}
         style={{ width:"100%", cursor: "pointer", userSelect: "none" }}
       >
-        <Typography variant="h6" component="div" sx={{ outline: "none" }}>
+        <Typography className="custom-link" variant="h6" component="div" sx={{ outline: "none" }}>
           Rate Your Professor
         </Typography>
       </div>

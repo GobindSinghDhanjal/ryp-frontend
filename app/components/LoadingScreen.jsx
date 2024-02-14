@@ -4,13 +4,24 @@ import Box from "@mui/material/Box";
 import { randomFacts } from "@/public/data/randomFacts";
 
 const LoadingScreen = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
 
   return (
     <div className="container">
       <div className="loading sub-container">
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <CircularProgress />
-          <p sx={{fontSize:"small"}}>{randomFacts[Math.floor(Math.random() * randomFacts.length)]}</p>
+          <p sx={{ fontSize: "small" }}>
+            {randomFacts[Math.floor(Math.random() * randomFacts.length)]}
+          </p>
         </Box>
       </div>
     </div>

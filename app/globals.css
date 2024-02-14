@@ -79,6 +79,8 @@ h3 {
   text-decoration: none !important;
 }
 
+
+
 footer{
   margin-top: 40px;
   text-align: center;
@@ -190,6 +192,10 @@ footer hr{
   padding: 50px 10px;
 }
 
+.custom-link{
+  text-decoration: none !important;
+}
+
 .list-item{
   min-width: "40px" !important;
 }
@@ -226,10 +232,10 @@ footer hr{
     display: none !important;
   }
 
-  /* .professor-detail-avatar{
-    width: 86px;
-    height: 86px;
-  } */
+  .professor-detail-avatar{
+    width: 120px;
+    height: 120px;
+  }
 }
 
 @media screen and (max-width: 500px) {

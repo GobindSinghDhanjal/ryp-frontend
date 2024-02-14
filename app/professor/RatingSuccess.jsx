@@ -11,7 +11,7 @@ const SuccessPage = () => {
   return (
     <div className="container">
       <div className="sub-container">
-        <Container maxWidth="md" sx={{ mt: 2, mb: 10 }}>
+        <Container maxWidth="md" sx={{ mt: 15, mb: 20 }}>
           <Typography
             variant="h4"
             component="h1"

@@ -9,8 +9,11 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'Page Title',
-  description: 'Page Description',
+  title: 'RateYourProfessor',
+  description: 'Rate Your Professor anonymously',
+  icons: {
+    icon: '/images/ryp-04.png',
+  },
 }
 
 export default function RootLayout({ children }) {
