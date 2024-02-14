@@ -5,16 +5,18 @@ import Avatar from "@mui/material/Avatar";
 import { red } from "@mui/material/colors";
 import { Rating } from "@mui/material";
 import { useRouter } from "next/navigation";
+import calculateAverageRating from "./averageRatingUtils";
+import avgRating from "./avgRatingUtil";
 
 export default function SingleCard({ props }) {
 
   const router = useRouter();
 
   function onButtonClick(prop) {
-    if (prop.type) {
-      router.push(`/professor?search=${encodeURIComponent(prop.name)}`);
+    if (prop.title) {
+      router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
     } else {
-      router.push(`/university?search=${encodeURIComponent(prop.university)}`);
+      router.push(`/university?search=${encodeURIComponent(prop._id)}`);
     }
   }
 
@@ -42,8 +44,8 @@ export default function SingleCard({ props }) {
             title={prop.name}
             subheader={
               <div>
-                {prop.college}, {prop.university}
-                <Rating name="read-only" value={4.3} precision={0.5} sx={{ display:"flex", fontSize: 16 }} readOnly />
+                {prop.college.name}, {prop.college.university.name}
+                <Rating name="read-only" value={avgRating(prop)} precision={0.5} sx={{ display:"flex", fontSize: 16 }} readOnly />
               </div>
             }
           />

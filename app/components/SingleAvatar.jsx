@@ -3,7 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { useRouter } from "next/navigation";
 import { Rating, Skeleton } from "@mui/material";
-import { calculateAverageRating } from "./averageRatingUtils";
 
 export default function SingleAvatar({ props }) {
   const router = useRouter();
@@ -12,7 +11,7 @@ export default function SingleAvatar({ props }) {
     if (prop.title) {
       router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
     } else {
-      router.push(`/university?search=${encodeURIComponent(prop.university)}`);
+      router.push(`/university?search=${encodeURIComponent(prop._id)}`);
     }
   }
 
@@ -56,10 +55,11 @@ export default function SingleAvatar({ props }) {
                   }}
                 />
                 {prop.title && <p>{prop.name}</p>}
-                {prop.title && (
+              
+                {prop.title &&  (
                   <Rating
                     name="read-only"
-                    value={calculateAverageRating(prop.name)}
+                    value={prop.averageRating}
                     precision={0.5}
                     sx={{ margin: "1px auto", fontSize: 16 }}
                     readOnly

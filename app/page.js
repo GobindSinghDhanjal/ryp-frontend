@@ -32,7 +32,7 @@ export default function Home() {
     // Fetch professors data
     const fetchProfessors = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors/prof/topThree`);
         if (!response.ok) {
           throw new Error('Failed to fetch professors');
         }

@@ -41,6 +41,7 @@ const ProfessorPage = () => {
         const data = await response.json();
         setAverageRating(calculateAverageRating(data));
         setProfessor(data);
+        window.scrollTo({ top: 0, behavior: "instant" });
       } catch (error) {
         console.error("Error fetching professor data:", error);
         router.push("/");
