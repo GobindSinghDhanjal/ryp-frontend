@@ -12,6 +12,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ProfessorRating from "./ProfessorRating";
 import StudentRating from "./StudentRating";
 import ProfessorSkeleton from "./ProfessorSkeleton";
+import { Suspense } from 'react'
 
 const ProfessorPage = () => {
   const router = useRouter();
@@ -70,6 +71,7 @@ const ProfessorPage = () => {
   }
 
   return (
+    <Suspense>
     <div className="professor container">
       <div className="sub-container">
         <Box sx={{ flexGrow: 1 }}>
@@ -105,6 +107,7 @@ const ProfessorPage = () => {
         <StudentRating feedback={professor.feedbacks} />
       </div>
     </div>
+    </Suspense>
   );
 };
 

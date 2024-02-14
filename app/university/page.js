@@ -97,6 +97,7 @@ import Grid from "@mui/material/Grid";
 import SingleAvatar from "../components/SingleAvatar";
 import SingleCard from "../components/SingleCard";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
+import { Suspense } from 'react'
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -141,6 +142,7 @@ const Page = () => {
   }
 
   return (
+    <Suspense>
     <div className="container">
       <div className="sub-container">
         <Box sx={{ flexGrow: 1 }}>
@@ -158,6 +160,7 @@ const Page = () => {
         <SingleCard props={filteredProfessors} />
       </div>
     </div>
+    </Suspense>
   );
 };
 
