@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Button, Typography, Rating, TextField } from "@mui/material";
-import CustomizedSnackbars from "../components/CutomizeSnackBar";
 import BasicAlerts from "../reviewaddprofessor/BasicAlert";
 
 const ProfessorRating = ({ id }) => {

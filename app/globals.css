@@ -9,16 +9,14 @@ body {
 
 .swiper {
   width: 100%;
-  height: 180px;
-  margin-top: 60px;
+  height: 250px;
+  margin-top: 11vh;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #d8d8d8;
-
-  /* Center slide text vertically */
+  background: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,6 +39,10 @@ body {
   text-align: center;
 }
 
+.banner-desktop{
+  display: block !important;
+}
+
 .loading{
   display: flex;
   justify-content: center; /* Horizontally center */
@@ -58,6 +60,10 @@ body {
   padding: 5px;
   width: 90%;
   margin: 2px auto;
+}
+
+.banner-mobile{
+  display: none !important;
 }
 
 .sub-container {
@@ -194,7 +200,8 @@ footer hr{
 
 @media screen and (max-width: 700px) {
   .swiper {
-    margin-top: 55px;
+    height: 180px;
+    margin-top: 50px;
   }
 
   .container{
@@ -207,6 +214,14 @@ footer hr{
 
   .sub-container {
     padding: 5px 25px;
+  }
+
+  .banner-mobile{
+    display: block!important;
+  }
+
+  .banner-desktop{
+    display: none !important;
   }
 
   .professor-detail-avatar{

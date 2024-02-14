@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import Link from "next/link";
 
 export default function Banner() {
   return (
@@ -28,28 +29,32 @@ export default function Banner() {
         className="mySwiper"
       >
         <SwiperSlide>
+        <Link href="/about" passHref>
           <img
-            src="https://kvstechbuddies.com/wp-content/uploads/2021/11/student-discounts-milshop.jpg"
+            className="banner-mobile"
+            src="/images/banner/ryp-banner.jpg"
             alt="deals-images"
           />
+            <img
+            className="banner-desktop"
+            src="/images/banner/ryp-banner-desktop-1.jpg"
+            alt="deals-images"
+          />
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
+        <Link href="/offers" passHref>
           <img
-            src="https://couponswala.com/blog/wp-content/uploads/2022/02/flipkart-min.png.webp"
+            className="banner-mobile"
+            src="/images/banner/ryp-banner2.jpg"
             alt="deals-images"
           />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://kvstechbuddies.com/wp-content/uploads/2021/11/student-discounts-milshop.jpg"
+            <img
+            className="banner-desktop"
+            src="/images/banner/ryp-banner2-desktop.jpg"
             alt="deals-images"
           />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://kvstechbuddies.com/wp-content/uploads/2021/11/student-discounts-milshop.jpg"
-            alt="deals-images"
-          />
+          </Link>
         </SwiperSlide>
       </Swiper>
     </>
