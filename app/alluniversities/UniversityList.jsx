@@ -7,14 +7,14 @@ const UniversityList = ({ universities }) => {
 
     const router = useRouter();
 
-    function onButtonClick(name) {
-        router.push(`/university?search=${encodeURIComponent(name)}`);
+    function onButtonClick(id) {
+        router.push(`/university?search=${encodeURIComponent(id)}`);
     }
 
   return (
     <Grid container>
       {universities.map((university, index) => (
-        <Grid item xs={4} key={index} onClick={()=>{onButtonClick(university.name)}}>
+        <Grid item xs={4} key={index} onClick={()=>{onButtonClick(university._id)}}>
           <Avatar
             alt={university.name}
             src={university.image}
