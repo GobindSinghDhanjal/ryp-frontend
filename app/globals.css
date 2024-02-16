@@ -186,6 +186,15 @@ footer hr{
   margin-top: 20px;
 }
 
+.loading-heading{
+  margin-top: 25px;
+  margin-bottom: 2px;
+}
+
+.loading-text{
+  margin-top: 2px;
+}
+
 .custom-link-style{
   color: #2b2b2b;
   text-decoration: none !important;

@@ -1,5 +1,5 @@
 export const randomFacts = [
-  "Honey never spoils; archaeologists found edible honey in ancient Egyptian tombs.",
+  "Honey never spoils, archaeologists found edible honey in ancient Egyptian tombs.",
   "The shortest war in history lasted only 38 minutes, between Britain and Zanzibar.",
   "A group of flamingos is called a flamboyance.",
   "During summer, the Eiffel Tower can grow taller by 15 cm due to heat expansion.",

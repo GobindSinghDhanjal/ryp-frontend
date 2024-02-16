@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.15.6",
     "@mui/material": "^5.15.6",
     "@mui/styled-engine-sc": "^6.0.0-alpha.13",
+    "bad-words": "^3.0.4",
     "eslint-config-next": "^14.1.0",
     "framer-motion": "^11.0.3",
     "next": "^14.1.0",

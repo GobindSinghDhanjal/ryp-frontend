@@ -3,10 +3,7 @@ import React, { useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import { Divider } from "@mui/material";
 import SingleAvatar from "./components/SingleAvatar";
-import { colleges, professors } from "../public/data/sampledata";
 import SearchBox from "./components/SearchBox";
-import SwiperComponent from "./components/SwiperComponent";
-// import SearchBox from "./components/searchProf";
 
 export default function Home() {
 
@@ -76,7 +73,6 @@ export default function Home() {
       <div className="sub-container">
 
       <SearchBox />
-        {/* <SearchBox /> */}
         <Divider className="divider" />
 
         <h3>Top Universities</h3>

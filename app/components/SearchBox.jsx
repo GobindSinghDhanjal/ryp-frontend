@@ -81,30 +81,6 @@ export default function SearchBox() {
     };
   }, []);
 
-  // const handleSearchChange = async (event) => {
-  //   const term = event.target.value;
-  //   setSearchTerm(term);
-
-  //   // If the search term is not empty, set isSearchOpen to true
-  //   setIsSearchOpen(term !== "");
-
-  //   try {
-  //     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors`);
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch professors");
-  //     }
-  //     const data = await response.json();
-  //     // Filter the results based on the search term
-  //     const filteredResults = data.filter((professor) =>
-  //       professor.name.toLowerCase().includes(term.toLowerCase())
-  //     );
-  //     setSearchResults(filteredResults.slice(0, 4)); // Limit results to maximum of 4 entries
-  //   } catch (error) {
-  //     console.error("Error fetching professors:", error);
-  //     setSearchResults([]); // Clear search results in case of error
-  //   }
-  // };
-
   const handleSearchChange = async (event) => {
     const term = event.target.value;
     setSearchTerm(term);

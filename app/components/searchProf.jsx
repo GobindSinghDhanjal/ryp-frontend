@@ -7,7 +7,6 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
-import { professors } from "@/public/data/sampledata";
 import { Divider } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
@@ -61,13 +60,18 @@ export default function SearchBox() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef(null);
+
+  const handleSearchClick = () => {
+    setIsSearchOpen(true);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
-        setSearchResults([]);
-        setSelectedIndex(-1);
+        setIsSearchOpen(false);
       }
     };
 
@@ -78,14 +82,38 @@ export default function SearchBox() {
     };
   }, []);
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = async (event) => {
     const term = event.target.value;
     setSearchTerm(term);
+    setIsSearchOpen(term !== "");
 
-    const results = professors.filter((professor) =>
-      professor.name.toLowerCase().includes(term.toLowerCase())
-    );
-    setSearchResults(results.slice(0, 4));
+    if (term.length === 0) {
+      setIsLoading(false);
+      setSearchResults([]);
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/professors`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch professors");
+      }
+      const data = await response.json();
+      const filteredResults = data.filter((professor) =>
+        professor.name.toLowerCase().includes(term.toLowerCase())
+      );
+      const limitedResults = filteredResults.slice(0, 4);
+      setSearchResults(limitedResults);
+    } catch (error) {
+      console.error("Error fetching professors:", error);
+      setSearchResults(["Didn't find"]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleResultClick = (result) => {
@@ -110,7 +138,6 @@ export default function SearchBox() {
       handleResultClick(searchResults[selectedIndex]);
     }
   };
-  
 
   return (
     <div className="search-box">
@@ -126,37 +153,65 @@ export default function SearchBox() {
                 inputProps={{ "aria-label": "search" }}
                 value={searchTerm}
                 onChange={handleSearchChange}
+                onFocus={handleSearchClick} // Open search when input is focused
                 onKeyDown={handleKeyDown}
               />
-              {searchResults.length > 0 && (
+              {isSearchOpen && (
                 <SearchResults>
-                  {searchResults.map((result, index) => (
-                    <div
-                      key={index}
-                      onClick={() => handleResultClick(result)}
-                      style={{
-                        cursor: "pointer",
-                        padding: "5px",
-                        backgroundColor:
-                          index === selectedIndex ? "lightblue" : "transparent",
+                  {isLoading ? (
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "black",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                     >
-                      <Typography
-                        variant="body1"
-                        sx={{ color: "black" }}
+                      Loading...
+                    </Typography>
+                  ) : searchResults.length === 0 ? (
+                    <Typography
+                      variant="body1"
+                      sx={{ color: "black", padding: "5px" }}
+                    >
+                      No results found
+                    </Typography>
+                  ) : (
+                    searchResults.map((result, index) => (
+                      <div
+                        key={index}
+                        onClick={() => handleResultClick(result)}
                         style={{
-                          fontWeight:
-                            index === selectedIndex ? "bold" : "normal",
+                          cursor: "pointer",
+                          padding: "5px",
+                          backgroundColor:
+                            index === selectedIndex
+                              ? "lightblue"
+                              : "transparent",
                         }}
                       >
-                        {result.name}
-                      </Typography>
-                      <Typography variant="body2" sx={{ fontSize: 12, color: "grey" }}>
-                        {result.college}, {result.university}
-                      </Typography>
-                      <Divider sx={{ mt: 1, mb: 0 }} />
-                    </div>
-                  ))}
+                        <Typography
+                          variant="body1"
+                          sx={{ color: "black" }}
+                          style={{
+                            fontWeight:
+                              index === selectedIndex ? "bold" : "normal",
+                          }}
+                        >
+                          {result.name}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{ fontSize: 12, color: "grey" }}
+                        >
+                          {result.college.name},{" "}
+                          {result.college.university.name}
+                        </Typography>
+                        <Divider sx={{ mt: 1, mb: 0 }} />
+                      </div>
+                    ))
+                  )}
                   <Link href="/addprofessor">
                     <Typography
                       variant="body1"

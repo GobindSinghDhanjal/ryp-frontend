@@ -1,16 +1,15 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import SearchBox from "../components/SearchBox";
-import { professors } from "@/public/data/sampledata"; // Assuming professors are fetched from another source
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import SingleAvatar from "../components/SingleAvatar";
-import SingleCard from "../components/SingleCard";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
-import SingleCardSkeleton from "./ProfessorSkeleton";
+import SingleCard from "../components/SingleCard"; // Import SingleCard
+import LoadingScreen from "../components/LoadingScreen";
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -18,7 +17,8 @@ const Page = () => {
   const router = useRouter();
 
   const [universityData, setUniversityData] = useState(null);
-  const [filteredProfessors, setFilteredProfessors] = useState([]);
+  const [filteredProfessors, setFilteredProfessors] = useState(null);
+  const [loading, setLoading] = useState(true); // State to track loading
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,11 +33,11 @@ const Page = () => {
           throw new Error('Network response was not ok');
         }
 
-        // const data = await response.json();
-        // setUniversityData(data);
-
         const universityData = await universityResponse.json();
         setUniversityData(universityData);
+
+        // Start timer for minimum loading time of 2 seconds
+        const startTime = Date.now();
 
         // Fetch professors associated with the university
         const professorsResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors/byUniversity/${universityData._id}`);
@@ -45,13 +45,17 @@ const Page = () => {
           throw new Error('Network response was not ok');
         }
         const professorsData = await professorsResponse.json();
-        setFilteredProfessors(professorsData);
 
-        // // Filter professors based on university name
-        // const filteredProfessors = professors.filter(
-        //   (professor) => professor.university === data.name
-        // );
-        // setFilteredProfessors(filteredProfessors);
+        // Calculate remaining time for minimum loading
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(2000 - elapsedTime, 0);
+
+        // Set filteredProfessors after minimum loading time
+        setTimeout(() => {
+          setFilteredProfessors(professorsData);
+          setLoading(false); // Set loading to false after fetching data
+        }, remainingTime);
+
       } catch (error) {
         console.error('Error fetching university data:', error);
         router.push("/");
@@ -63,10 +67,6 @@ const Page = () => {
 
   if (!universityData) {
     return <UniversityPageSkeleton/>;
-  }
-
-  if (!filteredProfessors) {
-    return <SingleCardSkeleton/>
   }
 
   return (
@@ -84,7 +84,14 @@ const Page = () => {
         </Box>
 
         <SearchBox />
-        <SingleCard props={filteredProfessors} />
+        {/* Show loading text until filteredProfessors is fetched */}
+        {loading ? (
+          <LoadingScreen/>
+        ) : (
+          <Suspense fallback={<LoadingScreen/>}>
+            <SingleCard props={filteredProfessors} />
+          </Suspense>
+        )}
       </div>
     </div>
   );

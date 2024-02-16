@@ -1,11 +1,13 @@
 "use client";
-import { Avatar, Box, Grid, Rating } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import ProfessorRating from "./ProfessorRating";
-import StudentRating from "./StudentRating";
 import ProfessorSkeleton from "./ProfessorSkeleton";
 import SuccessPage from "./RatingSuccess";
+import LoadingScreen from "../components/LoadingScreen";
+
+const LazyProfessorRating = React.lazy(() => import("./ProfessorRating"));
+const LazyStudentRating = React.lazy(() => import("./StudentRating"));
+const LazyProfessorProfile = React.lazy(() => import("./ProfessorProfile"));
 
 const ProfessorPage = () => {
   const router = useRouter();
@@ -17,6 +19,7 @@ const ProfessorPage = () => {
   const [averageRating, setAverageRating] = useState(null);
   const [numberOfRatings, setNumberOfRatings] = useState(0);
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(true); // State to track loading
 
   useEffect(() => {
     if (!id) {
@@ -35,6 +38,7 @@ const ProfessorPage = () => {
         const data = await response.json();
         setAverageRating(calculateAverageRating(data));
         setProfessor(data);
+        setLoading(false); // Set loading to false after fetching data
         window.scrollTo({ top: 0, behavior: "instant" });
       } catch (error) {
         console.error("Error fetching professor data:", error);
@@ -59,56 +63,47 @@ const ProfessorPage = () => {
     return averageRating;
   };
 
+  if (loading) {
+    // Show loading screen for at least 2 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return <LoadingScreen />;
+  }
+
   if (!professor) {
     return <ProfessorSkeleton />;
   }
 
-  if(success){
-    return <SuccessPage/>
+  if (success) {
+    return <SuccessPage />;
   }
 
   return (
     <div className="professor container">
       <div className="sub-container">
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container alignItems="center" spacing={0}>
-            <Grid
-              item
-              xs={4}
-              sx={{ display: "flex", justifyContent: "center" }}
-            >
-              <Avatar
-                className="professor-detail-avatar"
-                alt={professor.name}
-                src={professor.image}
-              />
-            </Grid>
-            <Grid item xs={1}></Grid>
-            <Grid item xs={7}>
-              <h2>{professor.name}</h2>
-              <p>{professor.title}</p>
-              <hr />
-              <h4>
-                {professor.college.name}, {professor.college.university.name}
-              </h4>
-              <Rating
-                name="read-only"
-                value={averageRating}
-                precision={0.5}
-                sx={{ display: "flex", fontSize: 16 }}
-                readOnly
-              />
-              <small>({numberOfRatings} Ratings)</small>
-            </Grid>
-          </Grid>
-        </Box>
+        {/* Lazy load ProfessorProfile component */}
+        <Suspense fallback={<ProfessorSkeleton />}>
+          <LazyProfessorProfile
+            professor={professor}
+            averageRating={averageRating}
+            numberOfRatings={numberOfRatings}
+          />
+        </Suspense>
         <br />
         <hr />
-        <ProfessorRating id={professor._id} setSuccess={setSuccess} />
+        {/* Lazy load ProfessorRating component */}
+        <Suspense fallback={<ProfessorSkeleton />}>
+          <LazyProfessorRating id={professor._id} setSuccess={setSuccess} />
+        </Suspense>
         <br />
         <hr />
         <h3>Student Ratings</h3>
-        <StudentRating feedback={professor.feedbacks} />
+        {/* Lazy load StudentRating component */}
+        <Suspense fallback={<ProfessorSkeleton />}>
+          <LazyStudentRating feedback={professor.feedbacks} />
+        </Suspense>
       </div>
     </div>
   );
