@@ -1,6 +1,7 @@
 // Footer.js
 
 import React from "react";
+import '@fortawesome/fontawesome-free/css/all.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,7 @@ const Footer = () => {
 
         <div className="footer-section">
           <h3>Contact Us</h3>
-          <p>Email: contact@rateyourprofessor.in</p>
+          <p>Email: rateyourprofessor.in@gmail.com</p>
         </div>
 
         <div className="footer-section">
@@ -26,13 +27,13 @@ const Footer = () => {
           <p>Stay connected on social media:</p>
           <div className="social-icons">
             {/* Add your social media icons and links here */}
-            <a href="#" rel="noopener noreferrer">
+            {/* <a href="#" rel="noopener noreferrer">
               <i className="fab fa-facebook"></i>
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            </a> */}
+            <a href="https://www.instagram.com/rateyourprofessor/" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-instagram"></i>
             </a>
           </div>

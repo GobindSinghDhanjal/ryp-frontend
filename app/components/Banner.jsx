@@ -25,14 +25,14 @@ export default function Banner() {
           clickable: true,
         }}
         navigation={false}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[ Navigation]}
         className="mySwiper"
       >
         <SwiperSlide>
         <Link href="/about" passHref>
           <img
             className="banner-mobile"
-            src="/images/banner/ryp-banner.jpg"
+            src="/images/banner/ryp-banner-01.jpg"
             alt="deals-images"
           />
             <img
