@@ -10,7 +10,6 @@ export default function Home() {
   const [allySupportsCache, setAllySupportsCache] = useState(null);
   const [professors, setProfessors] = useState([]);
   const [universities, setUniversities] = useState([]);
-  const [var,setVar] = useState();
 
   useEffect(() => {
     // Fetch ally-supports-cache data from localStorage
@@ -59,9 +58,9 @@ export default function Home() {
     fetchProfessors();
   }, []);
 
-  if(allySupportsCache!=null){
-    // console.log("Ally Supports Cache:",JSON.stringify(allySupportsCache));
-  }
+  // if(allySupportsCache!=null){
+  //   // console.log("Ally Supports Cache:",JSON.stringify(allySupportsCache));
+  // }
 
   // if(professors!=null){
   //   console.log(professors);
