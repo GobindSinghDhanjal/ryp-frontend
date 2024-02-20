@@ -10,6 +10,7 @@ export default function Home() {
   const [allySupportsCache, setAllySupportsCache] = useState(null);
   const [professors, setProfessors] = useState([]);
   const [universities, setUniversities] = useState([]);
+  const [var,setVar] = useState();
 
   useEffect(() => {
     // Fetch ally-supports-cache data from localStorage
