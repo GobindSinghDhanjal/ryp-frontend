@@ -30,10 +30,10 @@ const LoadingScreen = () => {
           }}
         >
           <CircularProgress />
-          <h4 className="loading-heading">Do You Know</h4>
-          <p className="loading-text">
+          <h4 className="loading-heading">Loading...</h4>
+          {/* <p className="loading-text">
             {randomFacts[factIndex]}
-          </p>
+          </p> */}
         </Box>
       </div>
     </div>
