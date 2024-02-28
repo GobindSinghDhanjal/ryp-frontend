@@ -63,14 +63,14 @@ const ProfessorPage = () => {
     return averageRating;
   };
 
-  if (loading) {
-    // Show loading screen for at least 2 seconds
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+  // if (loading) {
+  //   // Show loading screen for at least 2 seconds
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
 
-    return <LoadingScreen />;
-  }
+  //   return <LoadingScreen />;
+  // }
 
   if (!professor) {
     return <ProfessorSkeleton />;

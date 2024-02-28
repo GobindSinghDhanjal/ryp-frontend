@@ -4,11 +4,12 @@ import Box from "@mui/material/Box";
 import { randomFacts } from "@/public/data/randomFacts";
 
 const LoadingScreen = () => {
+  // Set initial state for factIndex to a random value
   const [factIndex, setFactIndex] = useState(0);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-
+    
     // Change random fact every 5 seconds
     const interval = setInterval(() => {
       setFactIndex((prevIndex) => (prevIndex + 1) % randomFacts.length);

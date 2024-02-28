@@ -4,6 +4,7 @@ import Banner from "./components/Banner";
 import { Divider } from "@mui/material";
 import SingleAvatar from "./components/SingleAvatar";
 import SearchBox from "./components/SearchBox";
+import SearchBox2 from "./components/SearchBox2";
 
 export default function Home() {
 
@@ -72,7 +73,8 @@ export default function Home() {
       {/* <SwiperComponent/> */}
       <div className="sub-container">
 
-      <SearchBox />
+      {/* <SearchBox /> */}
+      <SearchBox2/>
         <Divider className="divider" />
 
         <h3>Top Universities</h3>
