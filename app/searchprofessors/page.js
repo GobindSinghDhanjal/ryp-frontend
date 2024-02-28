@@ -14,7 +14,7 @@ const Page = () => {
   useEffect(() => {
     let timer;
     if (search) {
-      fetch(`http://localhost:3005/professors/search/${search}`)
+      fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors/search/${search}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
