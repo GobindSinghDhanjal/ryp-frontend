@@ -24,6 +24,7 @@ export default function SingleCard({ props }) {
     <div className="card">
       {props.map((prop,i) => (
         <Card
+        className="single-card"
         onClick={()=>{onButtonClick(prop)}}
         key={i}
           sx={{

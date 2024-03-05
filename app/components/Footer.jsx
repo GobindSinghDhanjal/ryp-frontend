@@ -56,6 +56,11 @@ const Footer = () => {
           © {currentYear} RateYourProfessor. All Rights Reserved
         </p>
       </div>
+      <hr />
+      <div className="footer-bottom">
+      <p className="version">Version 1.1.0</p>
+      </div>
+
     </footer>
   );
 };

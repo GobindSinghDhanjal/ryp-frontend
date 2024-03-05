@@ -4,17 +4,29 @@ import { Grid, Avatar, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 const UniversityList = ({ universities }) => {
+  const router = useRouter();
 
-    const router = useRouter();
-
-    function onButtonClick(id) {
-        router.push(`/university?search=${encodeURIComponent(id)}`);
-    }
+  function onButtonClick(id) {
+    router.push(`/university?search=${encodeURIComponent(id)}`);
+  }
 
   return (
     <Grid container>
       {universities.map((university, index) => (
-        <Grid item xs={4} key={index} onClick={()=>{onButtonClick(university._id)}}>
+        <Grid
+          item
+          xs={4}
+          sx={{
+            transition: "transform 0.25s ease-in-out", // Smooth transition for both states
+            "&:hover": {
+              transform: "scale(1.1)", // Zoom effect on hover
+            },
+          }}
+          key={index}
+          onClick={() => {
+            onButtonClick(university._id);
+          }}
+        >
           <Avatar
             alt={university.name}
             src={university.image}

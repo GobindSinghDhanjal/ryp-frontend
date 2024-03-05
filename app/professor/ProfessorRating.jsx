@@ -115,7 +115,7 @@ const ProfessorRating = ({ id, setSuccess }) => {
       </Box>
       <Box mt={2}>
         <TextField
-          label="Comment (Optional)"
+          label="Feedback (Optional)"
           variant="outlined"
           value={comment}
           onChange={(e) => setComment(e.target.value)}

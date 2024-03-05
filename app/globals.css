@@ -34,8 +34,8 @@ body {
 }
 
 .professor-detail-avatar{
-  width: 120px;
-  height: 120px;
+  width: 120px !important;
+  height: 120px !important;
   text-align: center;
 }
 
@@ -134,12 +134,19 @@ footer hr{
 
 .homepage-avatar{
   text-align: -webkit-center;
+  position: relative;
+  transition: transform 0.25s ease-in-out;
 }
 
 .homepage-avatar p{
   font-size: small;
   margin-bottom: 2px;
   font-weight: 500;
+}
+
+
+.homepage-avatar:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
 }
 
 .professor h2{
@@ -185,6 +192,20 @@ footer hr{
 .card{
   text-align: -webkit-center;
   margin-top: 20px;
+}
+
+.single-card{
+  position: relative;
+  transition: transform 0.25s ease-in-out;
+}
+
+.version{
+  text-align: center;
+  font-size: xx-small;
+}
+
+.single-card:hover{
+  transform:scale(1.1)
 }
 
 .footer-section p{

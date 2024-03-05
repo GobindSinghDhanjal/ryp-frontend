@@ -33,7 +33,6 @@ const StudentRating = ({ feedback }) => {
           <Box sx={{ display: 'block',textAlign:"right", justifyContent: 'space-between', marginTop: 1 }}>
             <Typography variant="body2" color="textSecondary">
               {new Date(date).toLocaleDateString('en-IN', {
-                day: 'numeric',
                 month: 'short',
                 year: 'numeric',
                 timeZone: 'Asia/Kolkata'

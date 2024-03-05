@@ -9,7 +9,7 @@ import LoadingScreen from "./LoadingScreen";
 export default function SingleAvatar({ props }) {
   const router = useRouter();
 
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function onButtonClick(prop) {
     setLoading(true);
@@ -22,8 +22,8 @@ export default function SingleAvatar({ props }) {
     }
   }
 
-  if(loading){
-    return <LoadingScreen/>
+  if (loading) {
+    return <LoadingScreen />;
   }
 
   if (!props || !props.length) {
@@ -52,6 +52,7 @@ export default function SingleAvatar({ props }) {
               <div className="homepage-avatar" key={i}>
                 <Avatar
                   onClick={() => onButtonClick(prop)}
+                  className="avatar-image" 
                   alt={prop.name}
                   src={prop.image}
                   sx={{
@@ -60,8 +61,8 @@ export default function SingleAvatar({ props }) {
                   }}
                 />
                 {prop.title && <p>{prop.name}</p>}
-              
-                {prop.title &&  (
+
+                {prop.title && (
                   <Rating
                     name="read-only"
                     value={prop.averageRating}
