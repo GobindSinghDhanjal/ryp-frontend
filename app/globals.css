@@ -196,7 +196,7 @@ footer hr{
 
 .single-card{
   position: relative;
-  transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out !important;
 }
 
 .version{
