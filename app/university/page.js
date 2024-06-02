@@ -10,6 +10,7 @@ import SingleAvatar from "../components/SingleAvatar";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
 import SingleCard from "../components/SingleCard"; // Import SingleCard
 import LoadingScreen from "../components/LoadingScreen";
+import ProfessorCard from "../components/ProfessorCard";
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -28,9 +29,11 @@ const Page = () => {
       }
 
       try {
-        const universityResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/universities/${search}`);
+        const universityResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/universities/${search}`
+        );
         if (!universityResponse.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
 
         const universityData = await universityResponse.json();
@@ -40,9 +43,11 @@ const Page = () => {
         const startTime = Date.now();
 
         // Fetch professors associated with the university
-        const professorsResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors/byUniversity/${universityData._id}`);
+        const professorsResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/professors/byUniversity/${universityData._id}`
+        );
         if (!professorsResponse.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const professorsData = await professorsResponse.json();
 
@@ -55,9 +60,8 @@ const Page = () => {
           setFilteredProfessors(professorsData);
           setLoading(false); // Set loading to false after fetching data
         }, remainingTime);
-
       } catch (error) {
-        console.error('Error fetching university data:', error);
+        console.error("Error fetching university data:", error);
         router.push("/");
       }
     };
@@ -66,7 +70,7 @@ const Page = () => {
   }, [search, router]);
 
   if (!universityData) {
-    return <UniversityPageSkeleton/>;
+    return <UniversityPageSkeleton />;
   }
 
   return (
@@ -86,10 +90,18 @@ const Page = () => {
         <SearchBox />
         {/* Show loading text until filteredProfessors is fetched */}
         {loading ? (
-          <LoadingScreen/>
+          <LoadingScreen />
         ) : (
-          <Suspense fallback={<LoadingScreen/>}>
-            <SingleCard props={filteredProfessors} />
+          <Suspense fallback={<LoadingScreen />}>
+          <ProfessorCard props={filteredProfessors} />
+            {/* <SingleCard props={filteredProfessors} /> */}
+            {/* <Grid container spacing={2} justifyContent="center">
+              {filteredProfessors.map((professor, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                  <SingleCard props={filteredProfessors} />
+                </Grid>
+              ))}
+            </Grid> */}
           </Suspense>
         )}
       </div>
