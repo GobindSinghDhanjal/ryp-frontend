@@ -7,7 +7,6 @@ import SearchBox from "./components/SearchBox";
 import SearchBox2 from "./components/SearchBox2";
 
 export default function Home() {
-
   const [allySupportsCache, setAllySupportsCache] = useState(null);
   const [professors, setProfessors] = useState([]);
   const [universities, setUniversities] = useState([]);
@@ -30,9 +29,11 @@ export default function Home() {
     // Fetch professors data
     const fetchProfessors = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors/prof/topThree`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/professors/prof/topThree`
+        );
         if (!response.ok) {
-          throw new Error('Failed to fetch professors');
+          throw new Error("Failed to fetch professors");
         }
         const data = await response.json();
         setProfessors(data);
@@ -43,9 +44,11 @@ export default function Home() {
 
     const fetchUniversities = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/universities`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/universities`
+        );
         if (!response.ok) {
-          throw new Error('Failed to fetch universities');
+          throw new Error("Failed to fetch universities");
         }
         const data = await response.json();
         setUniversities(data);
@@ -55,7 +58,7 @@ export default function Home() {
     };
 
     // fetchCacheData();
-    fetchUniversities()
+    fetchUniversities();
     fetchProfessors();
   }, []);
 
@@ -72,16 +75,19 @@ export default function Home() {
       <Banner />
       {/* <SwiperComponent/> */}
       <div className="sub-container">
-
-      {/* <SearchBox /> */}
-      <SearchBox2/>
-        <Divider className="divider" />
+        {/* <SearchBox /> */}
+        <SearchBox2 />
+        <div className="divider-p">
+          <Divider className="divider" />
+        </div>
 
         <h3>Top Universities</h3>
         {/* <SingleAvatar props={colleges} /> */}
         <SingleAvatar props={universities} />
         <br />
-        <Divider className="divider" />
+        <div className="divider-p">
+          <Divider className="divider" />
+        </div>
 
         <h3>Top Rated Professors</h3>
         <SingleAvatar props={professors} />
