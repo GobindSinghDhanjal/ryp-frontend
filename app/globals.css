@@ -139,6 +139,7 @@ footer hr{
 .homepage-avatar{
   text-align: -webkit-center;
   position: relative;
+  width: 100px;
   transition: transform 0.25s ease-in-out;
 }
 
