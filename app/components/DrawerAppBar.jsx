@@ -51,7 +51,8 @@ function DrawerAppBar(props) {
       <div
       className="menubar custom-link"
         onClick={handleClick}
-        style={{ width:"100%", cursor: "pointer", userSelect: "none" }}
+        style={{ minWidth:"max-content", cursor: "pointer", userSelect: "none" }}
+        // style={{ width:"100%", cursor: "pointer", userSelect: "none" }}
       >
         <Typography className="custom-link" variant="h6" component="div" sx={{ outline: "none" }}>
           Rate Your Professor

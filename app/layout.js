@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Rate Your Professor",
+  title: { default : "Rate Your Professor", template: "%s - Rate Your Professor"},
   description:
     "Welcome to RateYourProfessor, the platform where students have the power to share their valuable insights and experiences with professors anonymously, without the need for login or signup. We understand the significance of a supportive learning environment, and our mission is to empower students by providing a space to express their opinions on the educators who play a crucial role in their academic journey.",
 };

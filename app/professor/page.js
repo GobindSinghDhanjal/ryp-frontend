@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ProfessorSkeleton from "./ProfessorSkeleton";
 import SuccessPage from "./RatingSuccess";
 import LoadingScreen from "../components/LoadingScreen";
+import Head from "next/head";
 
 const LazyProfessorRating = React.lazy(() => import("./ProfessorRating"));
 const LazyStudentRating = React.lazy(() => import("./StudentRating"));
@@ -81,31 +82,57 @@ const ProfessorPage = () => {
   }
 
   return (
-    <div className="professor container">
-      <div className="sub-container">
-        {/* Lazy load ProfessorProfile component */}
-        <Suspense fallback={<ProfessorSkeleton />}>
-          <LazyProfessorProfile
-            professor={professor}
-            averageRating={averageRating}
-            numberOfRatings={numberOfRatings}
-          />
-        </Suspense>
-        <br />
-        <hr />
-        {/* Lazy load ProfessorRating component */}
-        <Suspense fallback={<ProfessorSkeleton />}>
-          <LazyProfessorRating id={professor._id} setSuccess={setSuccess} />
-        </Suspense>
-        <br />
-        <hr />
-        <h3>Student Ratings</h3>
-        {/* Lazy load StudentRating component */}
-        <Suspense fallback={<ProfessorSkeleton />}>
-          <LazyStudentRating feedback={professor.feedbacks} />
-        </Suspense>
+    <>
+      <Head>
+        <title>{`${professor.name} - Rate Your Professor`}</title>
+        <meta
+          name="description"
+          content={`Read reviews and ratings for ${professor.name}, a professor at ${professor.college.name}, ${professor.college.university.name}.`}
+        />
+        <meta
+          name="keywords"
+          content={`${professor.name}, ${professor.title}, professor ratings, rate your professor`}
+        />
+        <meta
+          property="og:title"
+          content={`${professor.name} - Rate Your Professor`}
+        />
+        <meta
+          property="og:description"
+          content={`Read reviews and ratings for ${professor.name}, a professor at ${professor.college.name}, ${professor.college.university.name}.`}
+        />
+        <meta property="og:image" content={professor.image} />
+        <meta
+          property="og:url"
+          content={`https://www.rateyourprofessor.in/professor?search=${professor._id}`}
+        />
+      </Head>
+      <div className="professor container">
+        <div className="sub-container">
+          {/* Lazy load ProfessorProfile component */}
+          <Suspense fallback={<ProfessorSkeleton />}>
+            <LazyProfessorProfile
+              professor={professor}
+              averageRating={averageRating}
+              numberOfRatings={numberOfRatings}
+            />
+          </Suspense>
+          <br />
+          <hr />
+          {/* Lazy load ProfessorRating component */}
+          <Suspense fallback={<ProfessorSkeleton />}>
+            <LazyProfessorRating id={professor._id} setSuccess={setSuccess} />
+          </Suspense>
+          <br />
+          <hr />
+          <h3>Student Ratings</h3>
+          {/* Lazy load StudentRating component */}
+          <Suspense fallback={<ProfessorSkeleton />}>
+            <LazyStudentRating feedback={professor.feedbacks} />
+          </Suspense>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

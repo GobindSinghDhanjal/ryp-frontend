@@ -255,6 +255,20 @@ footer hr{
 }
 
 
+@media screen and (max-width: 850px) {
+
+
+  .menubar{
+    margin-left: 60px;
+  }
+
+  .menubar-items{
+    margin-right: 60px;
+  }
+
+}
+
+
 
 @media screen and (max-width: 700px) {
   .swiper {
@@ -268,6 +282,10 @@ footer hr{
   
   .menubar{
     margin-left: 0px;
+  }
+
+  .menubar-items{
+    margin-right: 0px;
   }
 
   .sub-container {
