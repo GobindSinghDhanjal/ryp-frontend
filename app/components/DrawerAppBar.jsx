@@ -67,7 +67,7 @@ function DrawerAppBar(props) {
       onClick={handleDrawerToggle}
       sx={{ textAlign: "center", userSelect: "none", outline: "none" }}
     >
-      <List>
+      <List sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <Link className="custom-link-style" href="/">
           <ListItem disablePadding>
             <ListItemButton>

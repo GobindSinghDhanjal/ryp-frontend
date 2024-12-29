@@ -236,10 +236,10 @@ footer hr {
   color: #2b2b2b;
   text-decoration: none !important;
   /* padding: 50px 10px; */
-  li {
-    margin-top: 1.4rem;
-    margin-bottom: 1.4rem;
-  }
+  /* li {
+    margin-top: 1.4em;
+    margin-bottom: 1.4em;
+  } */
 }
 
 .custom-link {
