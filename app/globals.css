@@ -237,7 +237,8 @@ footer hr {
   text-decoration: none !important;
   /* padding: 50px 10px; */
   li {
-    margin-bottom: 20px;
+    margin-top: 28px;
+    margin-bottom: 28px;
   }
 }
 
