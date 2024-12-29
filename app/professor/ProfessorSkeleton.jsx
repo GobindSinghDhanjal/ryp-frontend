@@ -7,26 +7,65 @@ const ProfessorSkeleton = () => {
       <div className="sub-container">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container alignItems="center" spacing={0}>
-            <Grid item xs={4}>
-              <Skeleton variant="circular" width={76} height={76} />
+            <Grid
+              item
+              xs={6}
+              sm={4}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <Skeleton variant="circular" width={120} height={120} />
             </Grid>
-            <Grid item xs={8}>
-              <Skeleton variant="text" width="80%" height={40} />
-              <Skeleton variant="text" width="60%" height={20} />
-              <Skeleton variant="text" width="40%" height={20} />
-              <Skeleton variant="text" width="80%" height={20} />
+            <Grid item xs={6} sm={8}>
+              <Skeleton variant="text" width="100%" height={50} />
+              <Skeleton
+                variant="text"
+                height={20}
+                sx={{
+                  width: {
+                    xs: "80%",
+                    md: "60%",
+                  },
+                }}
+              />
+              <hr />
+              <Skeleton
+                variant="text"
+                width="100%"
+                sx={{
+                  height: {
+                    xs: 100,
+                    md: 50,
+                  },
+                }}
+              />
+
+              <Skeleton
+                variant="text"
+                height={20}
+                sx={{
+                  width: {
+                    xs: "60%",
+                    md: "40%",
+                  },
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={20}
+                sx={{
+                  width: {
+                    xs: "60%",
+                    md: "40%",
+                  },
+                }}
+              />
             </Grid>
           </Grid>
         </Box>
 
         <br />
         <hr />
-
-        <Skeleton variant="text" width="40%" height={20} />
-        <Skeleton variant="text" width="60%" height={20} />
-        <Skeleton variant="text" width="70%" height={20} />
-
-        {/* Other skeleton components related to professor's details */}
+        <Skeleton variant="text" width="100%" height={200} />
       </div>
     </div>
   );

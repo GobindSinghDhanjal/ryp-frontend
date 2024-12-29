@@ -3,8 +3,8 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ProfessorSkeleton from "./ProfessorSkeleton";
 import SuccessPage from "./RatingSuccess";
-import LoadingScreen from "../components/LoadingScreen";
 import Head from "next/head";
+import { Skeleton } from "@mui/material";
 
 const LazyProfessorRating = React.lazy(() => import("./ProfessorRating"));
 const LazyStudentRating = React.lazy(() => import("./StudentRating"));
@@ -20,7 +20,6 @@ const ProfessorPage = () => {
   const [averageRating, setAverageRating] = useState(null);
   const [numberOfRatings, setNumberOfRatings] = useState(0);
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(true); // State to track loading
 
   useEffect(() => {
     if (!id) {
@@ -39,7 +38,7 @@ const ProfessorPage = () => {
         const data = await response.json();
         setAverageRating(calculateAverageRating(data));
         setProfessor(data);
-        setLoading(false); // Set loading to false after fetching data
+
         window.scrollTo({ top: 0, behavior: "instant" });
       } catch (error) {
         console.error("Error fetching professor data:", error);
@@ -63,15 +62,6 @@ const ProfessorPage = () => {
     setNumberOfRatings(ratings.length);
     return averageRating;
   };
-
-  // if (loading) {
-  //   // Show loading screen for at least 2 seconds
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 2000);
-
-  //   return <LoadingScreen />;
-  // }
 
   if (!professor) {
     return <ProfessorSkeleton />;
@@ -107,31 +97,32 @@ const ProfessorPage = () => {
           content={`https://www.rateyourprofessor.in/professor?search=${professor._id}`}
         />
       </Head>
-      <div className="professor container">
-        <div className="sub-container">
-          {/* Lazy load ProfessorProfile component */}
-          <Suspense fallback={<ProfessorSkeleton />}>
+      <Suspense fallback={<ProfessorSkeleton />}>
+        <div className="professor container">
+          <div className="sub-container">
+            {/* Lazy load ProfessorProfile component */}
             <LazyProfessorProfile
               professor={professor}
               averageRating={averageRating}
               numberOfRatings={numberOfRatings}
             />
-          </Suspense>
-          <br />
-          <hr />
-          {/* Lazy load ProfessorRating component */}
-          <Suspense fallback={<ProfessorSkeleton />}>
-            <LazyProfessorRating id={professor._id} setSuccess={setSuccess} />
-          </Suspense>
-          <br />
-          <hr />
-          <h3>Student Ratings</h3>
-          {/* Lazy load StudentRating component */}
-          <Suspense fallback={<ProfessorSkeleton />}>
+            <br />
+            <hr />
+            {/* Lazy load ProfessorRating component */}
+            <Suspense
+              fallback={<Skeleton variant="text" height={280} width="100%" />}
+            >
+              <LazyProfessorRating id={professor._id} setSuccess={setSuccess} />
+            </Suspense>
+            <br />
+            <hr />
+            <h3>Student Ratings</h3>
+            {/* Lazy load StudentRating component */}
+
             <LazyStudentRating feedback={professor.feedbacks} />
-          </Suspense>
+          </div>
         </div>
-      </div>
+      </Suspense>
     </>
   );
 };
