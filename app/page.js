@@ -12,20 +12,6 @@ export default function Home() {
   const [universities, setUniversities] = useState([]);
 
   useEffect(() => {
-    // Fetch ally-supports-cache data from localStorage
-    // const fetchCacheData = () => {
-    //   try {
-    //     const cacheData = localStorage.getItem("ally-supports-cache");
-    //     if (cacheData) {
-    //       setAllySupportsCache(JSON.parse(cacheData));
-    //     } else {
-    //       console.log("No data found in localStorage for 'ally-supports-cache'");
-    //     }
-    //   } catch (error) {
-    //     console.error("Error fetching data from localStorage:", error);
-    //   }
-    // };
-
     // Fetch professors data
     const fetchProfessors = async () => {
       try {
@@ -62,18 +48,9 @@ export default function Home() {
     fetchProfessors();
   }, []);
 
-  // if(allySupportsCache!=null){
-  //   // console.log("Ally Supports Cache:",JSON.stringify(allySupportsCache));
-  // }
-
-  // if(professors!=null){
-  //   console.log(professors);
-  // }
-
   return (
     <div>
       <Banner />
-      {/* <SwiperComponent/> */}
       <div className="sub-container">
         {/* <SearchBox /> */}
         <SearchBox2 />
@@ -82,7 +59,6 @@ export default function Home() {
         </div>
 
         <h3>Top Universities</h3>
-        {/* <SingleAvatar props={colleges} /> */}
         <SingleAvatar props={universities} />
         <br />
         <div className="divider-p">
