@@ -100,10 +100,9 @@ export async function POST(req, res) {
     // Remove the TempProfessor record
     const tempProfessor = await TempProfessor.findById(id);
     if (!tempProfessor) {
-      return new Response(
-        JSON.stringify({ msg: "TempProfessor not found" }),
-        { status: 404 }
-      );
+      return new Response(JSON.stringify({ msg: "TempProfessor not found" }), {
+        status: 404,
+      });
     }
 
     await TempProfessor.deleteOne({ _id: id });
