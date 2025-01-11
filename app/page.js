@@ -7,7 +7,6 @@ import SearchBox from "./components/SearchBox";
 import SearchBox2 from "./components/SearchBox2";
 
 export default function Home() {
-  const [allySupportsCache, setAllySupportsCache] = useState(null);
   const [professors, setProfessors] = useState([]);
   const [universities, setUniversities] = useState([]);
 
@@ -52,8 +51,9 @@ export default function Home() {
     <div>
       <Banner />
       <div className="sub-container">
-        {/* <SearchBox /> */}
-        <SearchBox2 />
+        {/* <SearchBox2 /> */}
+        <SearchBox />
+
         <div className="divider-p">
           <Divider className="divider" />
         </div>

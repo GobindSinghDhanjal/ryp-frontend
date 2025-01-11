@@ -8,7 +8,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { Divider } from "@mui/material";
+import { useRouter } from "next/navigation";
 
+// Styled components
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -56,17 +58,56 @@ const SearchResults = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-export default function SearchBox() {
+export default function SearchBox2() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [professors, setProfessors] = useState([]); // Store all professors data here
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // New state to track if search is open
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const inputRef = useRef(null);
 
-  const handleSearchClick = () => {
-    setIsSearchOpen(true);
-  };
+  const router = useRouter();
 
+  // Fetch all professors once when the component is mounted
+  useEffect(() => {
+    const fetchProfessors = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch professors");
+        }
+        const data = await response.json();
+        setProfessors(data); // Store all professors' data
+      } catch (error) {
+        console.error("Error fetching professors:", error);
+      }
+    };
+
+    fetchProfessors();
+  }, []); // This runs once when the component is mounted
+
+  // Handle search input change with debouncing
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      if (searchTerm !== "") {
+        const filteredResults = professors.filter((professor) =>
+          professor.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        const limitedResults = filteredResults.slice(0, 4);
+        setSearchResults(
+          limitedResults.length ? limitedResults : ["Didn't find"]
+        );
+      } else {
+        setSearchResults([]); // Clear search results when input is empty
+      }
+    }, 300); // Debounce delay of 300ms
+
+    return () => clearTimeout(debounceTimer); // Cleanup the timeout on each render
+  }, [searchTerm, professors]); // Re-run when searchTerm or professors change
+
+  // Close search dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
@@ -79,34 +120,11 @@ export default function SearchBox() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, []); // This will run once when the component mounts
 
-  const handleSearchChange = async (event) => {
-    const term = event.target.value;
-    setSearchTerm(term);
-
-    // If the search term is not empty, set isSearchOpen to true
-    setIsSearchOpen(term !== "");
-
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch professors");
-      }
-      const data = await response.json();
-      // Filter the results based on the search term
-      const filteredResults = data.filter((professor) =>
-        professor.name.toLowerCase().includes(term.toLowerCase())
-      );
-      const limitedResults = filteredResults.slice(0, 4); // Limit results to maximum of 4 entries
-      const searchList = limitedResults.length
-        ? limitedResults
-        : ["Didn't find"];
-      setSearchResults(searchList);
-    } catch (error) {
-      console.error("Error fetching professors:", error);
-      setSearchResults(["Didn't find"]); // Set search results to "Didn't find" in case of error or empty list
-    }
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    setIsSearchOpen(event.target.value !== ""); // Open search results when there's a query
   };
 
   const handleResultClick = (result) => {
@@ -129,6 +147,8 @@ export default function SearchBox() {
       );
     } else if (event.key === "Enter" && selectedIndex !== -1) {
       handleResultClick(searchResults[selectedIndex]);
+    } else if (event.key === "Enter") {
+      router.push(`/searchprofessors?search=${encodeURIComponent(searchTerm)}`);
     }
   };
 
@@ -146,46 +166,45 @@ export default function SearchBox() {
                 inputProps={{ "aria-label": "search" }}
                 value={searchTerm}
                 onChange={handleSearchChange}
-                onFocus={handleSearchClick} // Open search when input is focused
+                onFocus={() => setIsSearchOpen(true)} // Open search when input is focused
                 onKeyDown={handleKeyDown}
               />
               {isSearchOpen && searchResults.length > 0 && (
                 <SearchResults>
-                  {searchResults.map(
-                    (result, index) =>
-                      result.college && (
-                        <div
-                          key={index}
-                          onClick={() => handleResultClick(result)}
+                  {searchResults.map((result, index) =>
+                    result.college ? (
+                      <div
+                        key={index}
+                        onClick={() => handleResultClick(result)}
+                        style={{
+                          cursor: "pointer",
+                          padding: "5px",
+                          backgroundColor:
+                            index === selectedIndex
+                              ? "lightblue"
+                              : "transparent",
+                        }}
+                      >
+                        <Typography
+                          variant="body1"
+                          sx={{ color: "black" }}
                           style={{
-                            cursor: "pointer",
-                            padding: "5px",
-                            backgroundColor:
-                              index === selectedIndex
-                                ? "lightblue"
-                                : "transparent",
+                            fontWeight:
+                              index === selectedIndex ? "bold" : "normal",
                           }}
                         >
-                          <Typography
-                            variant="body1"
-                            sx={{ color: "black" }}
-                            style={{
-                              fontWeight:
-                                index === selectedIndex ? "bold" : "normal",
-                            }}
-                          >
-                            {result.name}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{ fontSize: 12, color: "grey" }}
-                          >
-                            {result.college.name},{" "}
-                            {result.college.university.name}
-                          </Typography>
-                          <Divider sx={{ mt: 1, mb: 0 }} />
-                        </div>
-                      )
+                          {result.name}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{ fontSize: 12, color: "grey" }}
+                        >
+                          {result.college.name},{" "}
+                          {result.college.university.name}
+                        </Typography>
+                        <Divider sx={{ mt: 1, mb: 0 }} />
+                      </div>
+                    ) : null
                   )}
                   <Link href="/addprofessor">
                     <Typography

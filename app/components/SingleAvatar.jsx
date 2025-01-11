@@ -49,10 +49,13 @@ export default function SingleAvatar({ props }) {
         {props.map(
           (prop, i) =>
             i < 3 && (
-              <div className="homepage-avatar" key={i}>
+              <div
+                className="homepage-avatar"
+                onClick={() => onButtonClick(prop)}
+                key={i}
+              >
                 <Avatar
-                  onClick={() => onButtonClick(prop)}
-                  className="avatar-image" 
+                  className="avatar-image"
                   alt={prop.name}
                   src={prop.image}
                   sx={{
