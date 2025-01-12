@@ -30,7 +30,7 @@ const ProfessorPage = () => {
     async function fetchProfessorData() {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/professors/${id}`
+          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch professor data");

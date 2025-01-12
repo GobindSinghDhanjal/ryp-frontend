@@ -33,7 +33,7 @@ const ProfessorRating = ({ id, setSuccess }) => {
         word.toLowerCase()
       );
 
-      if (value === 0) {
+      if (value === 0 || value === null) {
         setBasicAlert({
           display: true,
           alert: {
@@ -70,7 +70,7 @@ const ProfessorRating = ({ id, setSuccess }) => {
       }
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/professors/${id}/feedback`,
+        `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}/feedback`,
         {
           method: "POST",
           headers: {
@@ -87,7 +87,7 @@ const ProfessorRating = ({ id, setSuccess }) => {
         throw new Error("Failed to submit rating: " + response.statusText);
       }
 
-      console.log("Rating submitted successfully");
+      console.log("Rating submitted successfully : ");
       setValue(0);
       setComment("");
       setSuccess(true);

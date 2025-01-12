@@ -19,7 +19,7 @@ export default function Home() {
     const fetchProfessors = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/prof/topThree`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/professors/prof/topThree`,
           { cache: "no-store" }
         );
         if (!response.ok) {
