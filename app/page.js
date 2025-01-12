@@ -6,6 +6,10 @@ import SingleAvatar from "./components/SingleAvatar";
 import SearchBox from "./components/SearchBox";
 import SearchBox2 from "./components/SearchBox2";
 
+export const revalidate = 60
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store'
+
 export default function Home() {
   const [professors, setProfessors] = useState([]);
   const [universities, setUniversities] = useState([]);

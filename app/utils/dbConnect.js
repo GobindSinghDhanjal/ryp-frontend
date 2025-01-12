@@ -1,38 +1,34 @@
 // import mongoose from "mongoose";
 
-// const MONGO_URI = process.env.NEXT_PUBLIC_MONGO_URI;
+// let isConnected = false; // To track database connection state
 
-// if (!MONGO_URI) {
-//   throw new Error("Please define the MONGO_URI environment variable");
-// }
-
-// let isConnected = null;
-
-// export async function dbConnect() {
+// const dbConnect = async () => {
 //   if (isConnected) {
+//     console.log("Database is already connected.");
 //     return;
 //   }
 
-//   console.log("hello db");
-  
-
 //   try {
-//     const connection = await mongoose.connect(MONGO_URI, {
+//     const db = await mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URI, {
 //       useNewUrlParser: true,
 //       useUnifiedTopology: true,
 //     });
-//     isConnected = connection.connections[0].readyState;
-//     console.log("Connected to MongoDB");
+
+//     isConnected = db.connections[0].readyState;
+//     console.log("Database connected successfully.");
 //   } catch (error) {
-//     console.error("Failed to connect to MongoDB:", error);
-//     throw error;
+//     console.error("Database connection failed:", error.message);
+//     throw new Error(error);
 //   }
-// }
+// };
+
+// export default dbConnect;
 
 import mongoose from "mongoose";
 
-let isConnected = false; // To track database connection state
+let isConnected = false; // Track connection state
 
+// Regular database connection handler
 const dbConnect = async () => {
   if (isConnected) {
     console.log("Database is already connected.");
@@ -50,6 +46,18 @@ const dbConnect = async () => {
   } catch (error) {
     console.error("Database connection failed:", error.message);
     throw new Error(error);
+  }
+};
+
+// Forced reconnect function for real-time data
+export const forceReconnect = async () => {
+  try {
+    await mongoose.disconnect();
+    console.log("Disconnected from DB");
+    await dbConnect(); // Reconnect after disconnect
+    console.log("Reconnected to DB");
+  } catch (error) {
+    console.error("Forced reconnect failed:", error.message);
   }
 };
 
