@@ -30,7 +30,7 @@ const Page = () => {
 
       try {
         const universityResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/universities/${search}`
+          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities/${search}`
         );
         if (!universityResponse.ok) {
           throw new Error("Network response was not ok");
@@ -44,7 +44,7 @@ const Page = () => {
 
         // Fetch professors associated with the university
         const professorsResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/professors/byUniversity/${universityData._id}`
+          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/byUniversity/${universityData._id}`
         );
         if (!professorsResponse.ok) {
           throw new Error("Network response was not ok");

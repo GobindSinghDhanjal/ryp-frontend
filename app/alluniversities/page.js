@@ -11,7 +11,7 @@ const Page = () => {
   useEffect(() => {
     const fetchUniversities = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/universities`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`);
         if (!response.ok) {
           throw new Error("Failed to fetch universities");
         }
