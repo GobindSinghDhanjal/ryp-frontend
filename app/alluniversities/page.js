@@ -21,7 +21,7 @@ const Page = () => {
         // Simulate loading for at least 2 seconds
         setTimeout(() => {
           setLoading(false);
-        }, 2000);
+        }, 100);
       } catch (error) {
         console.error("Error fetching universities:", error);
       }

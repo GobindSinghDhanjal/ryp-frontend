@@ -6,6 +6,7 @@ export async function GET(req) {
   try {
     authenticate(req);
     await dbConnect();
+    // await new Promise(resolve => setTimeout(resolve, 10000));
 
     const notifications = await Notification.find().sort({ date: -1 });
     return new Response(JSON.stringify(notifications), { status: 200 });

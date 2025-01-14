@@ -30,7 +30,8 @@ export default function Home() {
     const fetchUniversities = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`
+          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`,
+          {cache:"no-cache"}
         );
         if (!response.ok) {
           throw new Error("Failed to fetch universities");
