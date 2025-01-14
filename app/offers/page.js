@@ -5,8 +5,10 @@ const page = () => {
         className="sub-container"
         style={{
           minHeight: "60vh",
+          display: "flex",
+          alignItems: "center",
           textAlign: "center",
-          alignContent: "center",
+          justifyContent:"center"
         }}
       >
         <h1>We will soon upload student offers</h1>

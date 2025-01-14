@@ -72,6 +72,7 @@ body {
 
 .sub-container {
   padding: 5px 160px;
+  min-height: 60vh;
 }
 
 h3 {

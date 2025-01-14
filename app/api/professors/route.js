@@ -58,7 +58,7 @@ export async function POST(req, res) {
     id,
   } = await req.json(); // Get data from the request body
 
-  if (passcode !== process.env.PASSCODE) {
+  if (passcode !== process.env.NEXT_PUBLIC_PASSCODE) {
     return new Response("Forbidden: Invalid passcode", {
       status: 403,
       headers: { "Content-Type": "application/json" },

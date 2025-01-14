@@ -122,7 +122,7 @@ const ProfileCard = ({ handleClick, profile }) => {
         passcode: textFieldValue,
       };
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/professors`,
+        `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors`,
         {
           method: "POST",
           headers: {

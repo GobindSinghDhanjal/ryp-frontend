@@ -15,7 +15,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import SchoolIcon from "@mui/icons-material/School";
 import Link from "next/link";
-import { Chip, ListItemIcon } from "@mui/material";
+import { Badge, Chip, ListItemIcon } from "@mui/material";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import {
   ContactPage,
   ContactPhone,
@@ -49,12 +50,21 @@ function DrawerAppBar(props) {
 
     return (
       <div
-      className="menubar custom-link"
+        className="menubar custom-link"
         onClick={handleClick}
-        style={{ minWidth:"max-content", cursor: "pointer", userSelect: "none" }}
+        style={{
+          minWidth: "max-content",
+          cursor: "pointer",
+          userSelect: "none",
+        }}
         // style={{ width:"100%", cursor: "pointer", userSelect: "none" }}
       >
-        <Typography className="custom-link" variant="h6" component="div" sx={{ outline: "none" }}>
+        <Typography
+          className="custom-link"
+          variant="h6"
+          component="div"
+          sx={{ outline: "none" }}
+        >
           Rate Your Professor
         </Typography>
       </div>
@@ -127,6 +137,18 @@ function DrawerAppBar(props) {
             </ListItemButton>
           </ListItem>
         </Link>
+        <Link href="/notifications" className="custom-link-style">
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon style={{ minWidth: "42px" }}>
+                <Badge color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </ListItemIcon>
+              <ListItemText primary="Notifications" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
       </List>
     </Box>
   );
@@ -154,18 +176,45 @@ function DrawerAppBar(props) {
             Rate Your Professor
           </Typography>
           </div> */}
-          <Box className="menubar-items" sx={{ width:"100%", textAlign:"right", display: { xs: "none", sm: "block" } }}>
+          <Box
+            className="menubar-items"
+            sx={{
+              width: "100%",
+              textAlign: "right",
+              display: { xs: "none", sm: "block" },
+            }}
+          >
             <Button sx={{ color: "#fff" }}>
-              <Link className="custom-desktop-link-style" href="/">Home</Link>
+              <Link className="custom-desktop-link-style" href="/">
+                Home
+              </Link>
             </Button>
             <Button sx={{ color: "#fff" }}>
-              <Link className="custom-desktop-link-style" href="/alluniversities">Universities</Link>
+              <Link
+                className="custom-desktop-link-style"
+                href="/alluniversities"
+              >
+                Universities
+              </Link>
             </Button>
             <Button sx={{ color: "#fff" }}>
-              <Link className="custom-desktop-link-style" href="/offers">offers</Link>
+              <Link className="custom-desktop-link-style" href="/offers">
+                offers
+              </Link>
             </Button>
-            <Button  sx={{ color: "#fff" }}>
-              <Link className="custom-desktop-link-style" href="/about">About</Link>
+            <Button sx={{ color: "#fff" }}>
+              <Link className="custom-desktop-link-style" href="/about">
+                About
+              </Link>
+            </Button>
+            <Button sx={{ color: "#fff" }}>
+              <Link
+                href="/notifications"
+                className="custom-desktop-link-style"
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <NotificationsIcon sx={{ marginRight: 1 }} />
+              </Link>
             </Button>
           </Box>
         </Toolbar>
