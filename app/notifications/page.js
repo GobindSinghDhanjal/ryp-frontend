@@ -19,7 +19,7 @@ const NotificationComponent = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          cache: "force-cache",
+          next: { revalidate: 60 },
         });
 
         if (!response.ok) {
