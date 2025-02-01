@@ -1,7 +1,8 @@
 // import mongoose from "mongoose";
 
-// let isConnected = false; // To track database connection state
+// let isConnected = false; // Track connection state
 
+// // Regular database connection handler
 // const dbConnect = async () => {
 //   if (isConnected) {
 //     console.log("Database is already connected.");
@@ -22,6 +23,18 @@
 //   }
 // };
 
+// // Forced reconnect function for real-time data
+// export const forceReconnect = async () => {
+//   try {
+//     await mongoose.disconnect();
+//     console.log("Disconnected from DB");
+//     await dbConnect(); // Reconnect after disconnect
+//     console.log("Reconnected to DB");
+//   } catch (error) {
+//     console.error("Forced reconnect failed:", error.message);
+//   }
+// };
+
 // export default dbConnect;
 
 import mongoose from "mongoose";
@@ -36,10 +49,7 @@ const dbConnect = async () => {
   }
 
   try {
-    const db = await mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const db = await mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URI);
 
     isConnected = db.connections[0].readyState;
     console.log("Database connected successfully.");

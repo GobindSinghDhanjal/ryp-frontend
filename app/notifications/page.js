@@ -13,7 +13,7 @@ const NotificationComponent = () => {
       try {
         const token = process.env.NEXT_PUBLIC_PASSCODE || "";
 
-        const response = await fetch("/api/notifications", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/notifications`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
