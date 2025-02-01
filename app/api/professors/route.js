@@ -44,6 +44,7 @@ export async function GET(req, res) {
 }
 
 // POST request to create a professor
+
 export async function POST(req, res) {
   const {
     name,
@@ -85,13 +86,23 @@ export async function POST(req, res) {
       await college.save();
     }
 
+    // Generate image URL if not provided
+    let professorImage = image;
+    if (!image) {
+      const randomNum = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
+      professorImage =
+        gender === "male"
+          ? `/images/man/man-${randomNum}.png`
+          : `/images/woman/woman-${randomNum}.png`;
+    }
+
     // Create the Professor
     const professor = new Professor({
       name,
       gender,
       department,
       title,
-      image,
+      image: professorImage,
       subjects,
       college: college._id,
     });
