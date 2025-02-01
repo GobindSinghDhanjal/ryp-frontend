@@ -97,7 +97,7 @@ export default function SearchBox() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/professors`
+        `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch professors");

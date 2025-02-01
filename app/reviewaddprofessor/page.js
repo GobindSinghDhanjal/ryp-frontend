@@ -30,7 +30,7 @@ const Page = () => {
   useEffect(() => {
     if (authenticated) {
       // Fetch professors data when authenticated
-      fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/professors/tempProfessor/all`)
+      fetch(`${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/tempProfessor/all`)
         .then(response => response.json())
         .then(data => setProfessors(data))
         .catch(error => console.error('Error fetching professors:', error));

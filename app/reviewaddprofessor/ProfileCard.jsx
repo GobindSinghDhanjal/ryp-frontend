@@ -68,7 +68,7 @@ const ProfileCard = ({ handleClick, profile }) => {
     try {
       // Make DELETE request to delete the temporary professor by ID and passcode
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/professors/tempProfessor`,
+        `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/tempProfessor`,
         {
           method: "DELETE",
           headers: {
