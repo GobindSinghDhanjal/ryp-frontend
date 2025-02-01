@@ -71,7 +71,9 @@ body {
 }
 
 .sub-container {
-  padding: 5px 160px;
+  max-width: 1200px;
+  padding: 5px 20px;
+  margin: auto;
   min-height: 60vh;
 }
 
