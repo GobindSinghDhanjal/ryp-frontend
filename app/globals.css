@@ -61,10 +61,10 @@ body {
   margin: 2px auto;
 }
 
-.divider-p {
+/* .divider-p {
   padding-left: 16px;
   padding-right: 16px;
-}
+} */
 
 .banner-mobile {
   display: none !important;
@@ -286,7 +286,7 @@ footer hr {
   }
 
   .sub-container {
-    padding: 5px 25px;
+    padding: 5px 20px;
   }
 
   .banner-mobile {

@@ -156,7 +156,7 @@ export default function SearchBox2() {
     <div className="search-box">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar className="app-bar" position="static">
-          <Toolbar>
+          <Toolbar sx={{ padding: 0 }}>
             <Search ref={inputRef}>
               <SearchIconWrapper>
                 <SearchIcon />
