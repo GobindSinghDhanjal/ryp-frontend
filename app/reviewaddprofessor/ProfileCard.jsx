@@ -172,11 +172,14 @@ const ProfileCard = ({ handleClick, profile }) => {
           {/* Profile details */}
           <Grid item xs={12} sm={6} md={8}>
             <TextField
+              fullWidth
               id="name"
               label="Name"
               variant="outlined"
               value={name}
               onChange={(e) => handleFieldChange(e, "name")}
+              multiline
+              maxRows={4}
             />
             <FormControl sx={{ mt: 3 }} fullWidth>
               <InputLabel id="title-label">Title</InputLabel>
@@ -214,21 +217,27 @@ const ProfileCard = ({ handleClick, profile }) => {
             </FormControl>
 
             <TextField
+              fullWidth
               id="college"
               sx={{ mt: 3, mr: 2 }}
               label="College"
               variant="outlined"
               value={college}
               onChange={(e) => handleFieldChange(e, "college")}
+              multiline
+              maxRows={4}
             />
 
             <TextField
+              fullWidth
               id="university"
               sx={{ mt: 3 }}
               label="University"
               variant="outlined"
               value={university}
               onChange={(e) => handleFieldChange(e, "university")}
+              multiline
+              maxRows={4}
             />
           </Grid>
         </Grid>

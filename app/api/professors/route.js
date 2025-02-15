@@ -91,7 +91,7 @@ export async function POST(req, res) {
     if (!image) {
       const randomNum = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
       professorImage =
-        gender === "male"
+        gender === "Male"
           ? `/images/man/man-${randomNum}.png`
           : `/images/woman/woman-${randomNum}.png`;
     }

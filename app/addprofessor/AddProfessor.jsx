@@ -120,8 +120,10 @@ const AddProfessor = () => {
             onChange={handleChange}
             required
             margin="normal"
+            multiline
+            maxRows={4}
           />
-       
+
           {/* <Autocomplete
             fullWidth
             value={professorData.title}
@@ -132,7 +134,7 @@ const AddProfessor = () => {
             )}
           /> */}
 
-          <FormControl sx={{marginTop:2}} fullWidth>
+          <FormControl sx={{ marginTop: 2 }} fullWidth>
             <InputLabel id="title-label">Title</InputLabel>
             <Select
               labelId="title-label"
@@ -150,7 +152,7 @@ const AddProfessor = () => {
             </Select>
           </FormControl>
 
-          <FormControl sx={{marginTop:3, marginBottom:1}} fullWidth>
+          <FormControl sx={{ marginTop: 3, marginBottom: 1 }} fullWidth>
             <InputLabel id="gender-label">Gender</InputLabel>
             <Select
               labelId="gender-label"
@@ -175,6 +177,8 @@ const AddProfessor = () => {
             onChange={handleChange}
             required
             margin="normal"
+            multiline
+            maxRows={4}
           />
           <TextField
             fullWidth
@@ -184,6 +188,8 @@ const AddProfessor = () => {
             onChange={handleChange}
             required
             margin="normal"
+            multiline
+            maxRows={4}
           />
           <TextField
             fullWidth
@@ -192,6 +198,8 @@ const AddProfessor = () => {
             value={professorData.department}
             onChange={handleChange}
             margin="normal"
+            multiline
+            maxRows={4}
           />
           <TextField
             fullWidth
@@ -201,16 +209,18 @@ const AddProfessor = () => {
             onChange={handleChange}
             margin="normal"
             helperText="Enter multiple subjects separated by commas"
+            multiline
+            maxRows={4}
           />
-          <input
+          {/* <input
             accept="image/*"
             id="image-upload"
             multiple={false}
             type="file"
             style={{ display: "none" }}
             onChange={handleImageChange}
-          />
-          <label htmlFor="image-upload">
+          /> */}
+          {/* <label htmlFor="image-upload">
             <Button variant="contained" component="span">
               Upload Image
             </Button>
@@ -221,7 +231,7 @@ const AddProfessor = () => {
               alt="Professor"
               style={{ marginTop: "10px", maxWidth: "100%" }}
             />
-          )}
+          )} */}
           <Box mt={2}>
             <Button type="submit" variant="contained" color="primary">
               Add Professor
