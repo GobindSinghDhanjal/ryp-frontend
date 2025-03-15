@@ -2,8 +2,7 @@ import { Skeleton, Box } from "@mui/material";
 
 export default function Loading() {
   return (
-    <div className="container sub-container">
-    <h1>Notifications</h1>
+    <div className="container">
       <Box
         sx={{ display: "flex", flexDirection: "column", gap: 4, maxWidth: 400 }}
       >
