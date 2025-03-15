@@ -98,11 +98,11 @@ footer {
 }
 
 .menubar {
-  margin-left: 135px;
+  margin-left: 120px;
 }
 
 .menubar-items {
-  margin-right: 135px;
+  margin-right: 120px;
 }
 
 footer p {
@@ -259,11 +259,11 @@ footer hr {
 
 @media screen and (max-width: 850px) {
   .menubar {
-    margin-left: 60px;
+    margin-left: 10px;
   }
 
   .menubar-items {
-    margin-right: 60px;
+    margin-right: 10px;
   }
 }
 

@@ -77,7 +77,6 @@ const NotificationComponent = () => {
   return (
     <div className="container sub-container">
       <h1>Notifications</h1>
-
       <Box
         sx={{
           display: "flex",
@@ -92,7 +91,6 @@ const NotificationComponent = () => {
               index === notifications.length - 1 ? lastNotificationRef : null
             }
             sx={{
-              maxWidth: 400,
               width: "100%",
               borderRadius: 2,
               boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.21)",
@@ -133,7 +131,6 @@ const NotificationComponent = () => {
           </Card>
         ))}
       </Box>
-
       {loading && <Loading />}
     </div>
   );
