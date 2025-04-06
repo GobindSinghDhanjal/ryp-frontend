@@ -3,6 +3,7 @@ import { Metadata } from "next";
 
 export async function generateMetadata({ searchParams }) {
   const id = searchParams?.search;
+
   if (!id) {
     return {
       title: "Professor Not Found",
