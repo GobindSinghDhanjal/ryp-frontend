@@ -141,6 +141,8 @@ footer hr {
   text-align: -webkit-center;
   position: relative;
   width: 100px;
+  cursor: pointer;
+  user-select: none;
   transition: transform 0.25s ease-in-out;
 }
 
