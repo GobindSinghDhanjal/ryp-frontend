@@ -21,7 +21,7 @@ export default function ProfessorCard({ props }) {
     <div className="card">
     <Grid container>
       {props.map((prop, i) => (
-        <Grid xs={12} md={6} sx={{ padding: 1 }}>
+        <Grid className="professor-card" xs={12} md={6} sx={{ padding: 1 }}>
         <Card
           className="single-card"
           onClick={() => {

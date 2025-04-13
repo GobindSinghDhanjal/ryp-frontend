@@ -14,7 +14,7 @@ const ProfessorProfile = ({professor, averageRating, numberOfRatings}) => {
           />
         </Grid>
         <Grid item xs={1}></Grid>
-        <Grid item xs={7}>
+        <Grid sx={{cursor:"pointer"}} item xs={7}>
           <h2>{professor.name}</h2>
           <p>{professor.title}</p>
           <hr />

@@ -16,6 +16,7 @@ const UniversityList = ({ universities }) => {
         <Grid
           item
           xs={4}
+          className="university-card"
           sx={{
             transition: "transform 0.25s ease-in-out", // Smooth transition for both states
             "&:hover": {

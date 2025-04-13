@@ -10,6 +10,7 @@ import SingleAvatar from "../components/SingleAvatar";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
 import LoadingScreen from "../components/LoadingScreen";
 import ProfessorCard from "../components/ProfessorCard";
+import { Avatar } from "@mui/material";
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -75,12 +76,17 @@ const Page = () => {
   return (
     <div className="container">
       <div className="sub-container">
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, marginTop:"20px" }}>
           <Grid container alignItems="center" spacing={0}>
-            <Grid xs={4}>
-              <SingleAvatar props={[universityData]} />
+            <Grid sx={{ justifyItems: "center" }} xs={4}>
+              <Avatar
+                className="professor-detail-avatar"
+                alt={universityData.name}
+                src={universityData.image}
+              />
             </Grid>
-            <Grid xs={8}>
+            <Grid xs={1}></Grid>
+            <Grid xs={7}>
               <h2>{universityData.name}</h2>
             </Grid>
           </Grid>

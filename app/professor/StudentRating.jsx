@@ -30,11 +30,13 @@ const StudentRating = ({ feedback }) => {
             padding: 2,
             marginBottom: 3,
             borderRadius: 2,
-            boxShadow: "1px 1px 8px rgba(0, 0, 0, 0.09)",
+            boxShadow: "1px 1px 8px rgba(0, 0, 0, 0.14)",
           }}
         >
           <Box>
-            <Typography variant="h6">Student</Typography>
+            <Typography variant="subtitle1" fontWeight="500">
+              Student
+            </Typography>
             <Rating name="read-only" precision={0.5} value={rating} readOnly />
           </Box>
           <Typography variant="body1">{comment}</Typography>
