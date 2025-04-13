@@ -43,17 +43,15 @@ export default function TopRatedProfessors({ props }) {
                   height: 76,
                 }}
               />
-              {prop.title && <p>{prop.name}</p>}
+              <p>{prop.name}</p>
 
-              {prop.title && (
-                <Rating
-                  name="read-only"
-                  value={prop.averageRating}
-                  precision={0.5}
-                  sx={{ margin: "1px auto", fontSize: 16 }}
-                  readOnly
-                />
-              )}
+              <Rating
+                name="read-only"
+                value={prop.averageRating}
+                precision={0.5}
+                sx={{ margin: "1px auto", fontSize: 16 }}
+                readOnly
+              />
             </div>
           )
       )}

@@ -31,7 +31,7 @@ export default function Home() {
     const fetchUniversities = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`,
+          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities/top`,
           {
             next: { revalidate: 2592000 }, // revalidate every 30 days (in seconds)
           }
