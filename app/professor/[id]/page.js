@@ -128,8 +128,6 @@
 //     </>
 //   );
 // }
-// export const dynamic = "force-dynamic";
-export const revalidate = 10;
 
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
@@ -138,24 +136,8 @@ import StudentRating from "../components/StudentRating";
 import RatingForm from "../components/RatingForm";
 import { Skeleton } from "@mui/material";
 
-async function getProfessorDataFresh(id) {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`,
-      {
-        next: { revalidate: 10 },
-      }
-    );
-    if (!res.ok) return null;
-    return await res.json();
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
-}
-
-// 🟡 For metadata (cached OK)
-async function getProfessorDataMeta(id) {
+// Function to fetch professor data
+async function getProfessorData(id) {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`
@@ -176,29 +158,8 @@ function calculateRatingStats(professor) {
   return { averageRating: average, numberOfRatings: ratings.length };
 }
 
-export async function generateMetadata({ params }) {
-  const professor = await getProfessorDataMeta(params.id);
-
-  if (!professor) {
-    return {
-      title: "Professor Not Found",
-      description: "No professor data available.",
-    };
-  }
-
-  return {
-    title: `${professor.name} - Rate Your Professor`,
-    description: `Read reviews and ratings for ${professor.name}, a professor at ${professor.college.name}, ${professor.college.university.name}.`,
-    openGraph: {
-      title: `${professor.name} - Rate Your Professor`,
-      description: `Read reviews and ratings for ${professor.name}, a professor at ${professor.college.name}, ${professor.college.university.name}.`,
-      url: `https://www.rateyourprofessor.in/professor/${professor._id}`,
-    },
-  };
-}
-
 export default async function ProfessorPage({ params }) {
-  const professor = await getProfessorDataFresh(params.id);
+  const professor = await getProfessorData(params.id);
   if (!professor) notFound();
 
   const { averageRating, numberOfRatings } = calculateRatingStats(professor);
@@ -234,7 +195,6 @@ export default async function ProfessorPage({ params }) {
           }),
         }}
       />
-
       <div className="professor container">
         <div className="sub-container">
           <ProfessorProfile
