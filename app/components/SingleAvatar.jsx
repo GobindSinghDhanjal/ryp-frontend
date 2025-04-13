@@ -5,25 +5,29 @@ import { useRouter } from "next/navigation";
 import { Rating, Skeleton } from "@mui/material";
 import { useState } from "react";
 import LoadingScreen from "./LoadingScreen";
+import { useEffect } from "react";
 
 export default function SingleAvatar({ props }) {
   const router = useRouter();
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   console.log("loading : " + loading);
+  // }, [loading]);
 
   function onButtonClick(prop) {
-    setLoading(true);
+    // setLoading(true);
     if (prop.title) {
       router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
-      setLoading(false);
+      // setTimeout(() => {
+      //   setLoading(false);
+      //   router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
+      // }, 300);
     } else {
       router.push(`/university?search=${encodeURIComponent(prop._id)}`);
-      setLoading(false);
+      // setLoading(false);
     }
-  }
-
-  if (loading) {
-    return <LoadingScreen />;
   }
 
   if (!props || !props.length) {
