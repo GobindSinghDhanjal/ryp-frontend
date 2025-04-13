@@ -147,7 +147,7 @@ footer hr {
   position: relative;
   width: 100px;
   cursor: pointer;
-  margin: auto;
+  margin: 0 auto;
   user-select: none;
   transition: transform 0.25s ease-in-out;
 }
