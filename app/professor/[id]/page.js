@@ -128,6 +128,7 @@
 //     </>
 //   );
 // }
+// export const dynamic = "force-dynamic";
 export const revalidate = 10;
 
 import { Suspense } from "react";
