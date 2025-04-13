@@ -32,7 +32,9 @@ export default function Home() {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`,
-          { cache: "no-cache" }
+          {
+            next: { revalidate: 2592000 }, // revalidate every 30 days (in seconds)
+          }
         );
         if (!response.ok) {
           throw new Error("Failed to fetch universities");
