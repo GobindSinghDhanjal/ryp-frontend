@@ -6,7 +6,6 @@ import SearchBox from "../components/SearchBox";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
-import SingleAvatar from "../components/SingleAvatar";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
 import LoadingScreen from "../components/LoadingScreen";
 import ProfessorCard from "../components/ProfessorCard";

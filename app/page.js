@@ -2,16 +2,17 @@
 import React, { useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import { Divider } from "@mui/material";
-import SingleAvatar from "./components/SingleAvatar";
 import SearchBox from "./components/SearchBox";
-import SearchBox2 from "./components/SearchBox2";
+import TopUniversities from "./components/TopUniversities/TopUniversities";
+import TopRatedProfessors from "./components/TopRatedProfessors/TopRatedProfessors";
+import MostRatedProfessors from "./components/MostRatedProfessors/MostRatedProfessors";
 
 export default function Home() {
   const [professors, setProfessors] = useState([]);
   const [universities, setUniversities] = useState([]);
+  const [mostRatedProfessors, setMostRatedProfessors] = useState([]);
 
   useEffect(() => {
-    // Fetch professors data
     const fetchProfessors = async () => {
       try {
         const response = await fetch(
@@ -31,7 +32,7 @@ export default function Home() {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`,
-          {cache:"no-cache"}
+          { cache: "no-cache" }
         );
         if (!response.ok) {
           throw new Error("Failed to fetch universities");
@@ -43,16 +44,31 @@ export default function Home() {
       }
     };
 
-    // fetchCacheData();
+    const fetchMostRatedProfessors = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/mostRated`,
+          { cache: "no-cache" }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch universities");
+        }
+        const data = await response.json();
+        setMostRatedProfessors(data);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
     fetchUniversities();
     fetchProfessors();
+    fetchMostRatedProfessors();
   }, []);
 
   return (
     <div>
       <Banner />
       <div className="sub-container">
-        {/* <SearchBox2 /> */}
         <SearchBox />
 
         <div className="divider-p">
@@ -60,14 +76,22 @@ export default function Home() {
         </div>
 
         <h3>Top Universities</h3>
-        <SingleAvatar props={universities} />
+        <TopUniversities props={universities} />
         <br />
         <div className="divider-p">
           <Divider className="divider" />
         </div>
 
         <h3>Top Rated Professors</h3>
-        <SingleAvatar props={professors} />
+        <TopRatedProfessors props={professors} />
+
+        <br />
+        <div className="divider-p">
+          <Divider className="divider" />
+        </div>
+
+        <h3>Most Rated Professors</h3>
+        <MostRatedProfessors props={mostRatedProfessors} />
       </div>
     </div>
   );
