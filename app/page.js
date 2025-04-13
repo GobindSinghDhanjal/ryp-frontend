@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import { Divider } from "@mui/material";
-import SingleAvatar from "./components/SingleAvatar";
 import SearchBox from "./components/SearchBox";
-import SearchBox2 from "./components/SearchBox2";
+import TopRatedProfessor from "./components/TopRatedProfessor";
+import TopRatedUniversities from "./components/TopRatedUniversities";
 
 export default function Home() {
   const [professors, setProfessors] = useState([]);
@@ -31,7 +31,7 @@ export default function Home() {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`,
-          {cache:"no-cache"}
+          { cache: "no-cache" }
         );
         if (!response.ok) {
           throw new Error("Failed to fetch universities");
@@ -43,7 +43,6 @@ export default function Home() {
       }
     };
 
-    // fetchCacheData();
     fetchUniversities();
     fetchProfessors();
   }, []);
@@ -60,14 +59,15 @@ export default function Home() {
         </div>
 
         <h3>Top Universities</h3>
-        <SingleAvatar props={universities} />
+        <TopRatedUniversities props={universities} />
+
         <br />
         <div className="divider-p">
           <Divider className="divider" />
         </div>
 
         <h3>Top Rated Professors</h3>
-        <SingleAvatar props={professors} />
+        <TopRatedProfessor props={professors} />
       </div>
     </div>
   );
