@@ -1,5 +1,5 @@
 "use client";
-import DrawerAppBar from "./components/DrawerAppBar";
+import DrawerAppBar from "./components/DrawerAppBar/DrawerAppBar";
 import Footer from "./components/Footer";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 

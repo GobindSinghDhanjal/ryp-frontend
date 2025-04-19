@@ -17,21 +17,11 @@ import SchoolIcon from "@mui/icons-material/School";
 import Link from "next/link";
 import { Badge, Chip, ListItemIcon } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import {
-  ContactPage,
-  ContactPhone,
-  Home,
-  Info,
-  LocalOffer,
-} from "@mui/icons-material";
+import { Home, Info, LocalOffer } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
+import styles from "./DrawerAppBar.module.css";
 
 const drawerWidth = 240;
-const navItems = [
-  { name: "Home", icon: "Home" },
-  { name: "About", icon: "Info" },
-  { name: "Contact", icon: "Contact" },
-];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -50,14 +40,8 @@ function DrawerAppBar(props) {
 
     return (
       <div
-        className="menubar custom-link"
+        className={`${styles.title} menubar custom-link`}
         onClick={handleClick}
-        style={{
-          minWidth: "max-content",
-          cursor: "pointer",
-          userSelect: "none",
-        }}
-        // style={{ width:"100%", cursor: "pointer", userSelect: "none" }}
       >
         <Typography
           className="custom-link"
@@ -160,7 +144,7 @@ function DrawerAppBar(props) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar component="nav" sx={{ backgroundColor: "#2b2b2b" }}>
-        <Toolbar>
+        <Toolbar className={styles.appBar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -171,19 +155,8 @@ function DrawerAppBar(props) {
             <MenuIcon />
           </IconButton>
           <RateYourProfessor />
-          {/* <div onClick={handleClick} style={{ cursor: 'pointer' }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Rate Your Professor
-          </Typography>
-          </div> */}
-          <Box
-            className="menubar-items"
-            sx={{
-              width: "100%",
-              textAlign: "right",
-              display: { xs: "none", sm: "block" },
-            }}
-          >
+
+          <Box className={styles.menubarItems}>
             <Button sx={{ color: "#fff" }}>
               <Link className="custom-desktop-link-style" href="/">
                 Home

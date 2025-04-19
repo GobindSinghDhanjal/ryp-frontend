@@ -1,0 +1,28 @@
+.appBar {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+}
+
+.title {
+  min-width: max-content;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menubarItems {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .menubarItems {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    margin-left: auto;
+  }
+}

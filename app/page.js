@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Banner from "./components/Banner";
+import Banner from "./components/Banner/Banner";
 import { Divider } from "@mui/material";
 import SearchBox from "./components/SearchBox";
 import TopUniversities from "./components/TopUniversities/TopUniversities";

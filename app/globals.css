@@ -61,13 +61,12 @@ body {
   margin: 2px auto;
 }
 
-/* .divider-p {
-  padding-left: 16px;
-  padding-right: 16px;
-} */
 
 .banner-mobile {
   display: none !important;
+}
+.banner-mobile a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sub-container {
@@ -97,13 +96,13 @@ footer {
   align-items: center;
 }
 
-.menubar {
+/* .menubar {
   margin-left: 120px;
 }
 
 .menubar-items {
   margin-right: 120px;
-}
+} */
 
 footer p {
   font-size: small;
@@ -149,7 +148,8 @@ footer hr {
   cursor: pointer;
   margin: 0 auto;
   user-select: none;
-  transition: transform 0.25s ease-in-out;
+  transition: all 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .homepage-avatar p {
@@ -158,8 +158,8 @@ footer hr {
   font-weight: 500;
 }
 
-.homepage-avatar:hover {
-  transform: scale(1.1); /* Zoom effect on hover */
+.homepage-avatar:active {
+  transform: scale(0.9);
 }
 
 .professor h2 {
@@ -246,11 +246,7 @@ footer hr {
 .custom-link-style {
   color: #2b2b2b;
   text-decoration: none !important;
-  /* padding: 50px 10px; */
-  /* li {
-    margin-top: 1.4em;
-    margin-bottom: 1.4em;
-  } */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .custom-link {
@@ -315,5 +311,11 @@ footer hr {
   .swiper {
     height: 180px;
     margin-top: 50px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .homepage-avatar:hover {
+    transform: scale(1.1);
   }
 }
