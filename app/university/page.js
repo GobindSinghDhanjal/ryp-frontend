@@ -3,7 +3,6 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import SearchBox from "../components/SearchBox";
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
