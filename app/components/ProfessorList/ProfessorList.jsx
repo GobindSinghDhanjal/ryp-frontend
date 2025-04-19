@@ -1,39 +1,27 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
-import { Grid, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import { useRouter } from "next/navigation";
-import avgRating from "./avgRatingUtil";
+import avgRating from "../avgRatingUtil";
+import styles from "./ProfessorList.module.css";
 
-export default function ProfessorCard({ props }) {
+export default function ProfessorList({ props }) {
   const router = useRouter();
 
   function onButtonClick(prop) {
-    if (prop.title) {
-      router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
-    } else {
-      router.push(`/university?search=${encodeURIComponent(prop._id)}`);
-    }
+    router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
   }
 
   return (
-    <div className="card">
-    <Grid container>
+    <div className={styles.container}>
       {props.map((prop, i) => (
-        <Grid className="professor-card" xs={12} md={6} sx={{ padding: 1 }}>
         <Card
-          className="single-card"
+          className={styles.card}
           onClick={() => {
             onButtonClick(prop);
           }}
           key={i}
-          sx={{
-            maxWidth: 345,
-            borderRadius: "10px",
-            marginTop: "40px",
-            padding: "20px 10px",
-          }}
         >
           <CardHeader
             avatar={
@@ -58,9 +46,7 @@ export default function ProfessorCard({ props }) {
             }
           />
         </Card>
-        </Grid>
       ))}
-      </Grid>
     </div>
   );
 }

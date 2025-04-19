@@ -8,8 +8,8 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
 import LoadingScreen from "../components/LoadingScreen";
-import ProfessorCard from "../components/ProfessorCard";
 import { Avatar } from "@mui/material";
+import ProfessorList from "../components/ProfessorList/ProfessorList";
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -75,7 +75,7 @@ const Page = () => {
   return (
     <div className="container">
       <div className="sub-container">
-        <Box sx={{ flexGrow: 1, marginTop:"20px" }}>
+        <Box sx={{ flexGrow: 1, marginTop: "20px" }}>
           <Grid container alignItems="center" spacing={0}>
             <Grid sx={{ justifyItems: "center" }} xs={4}>
               <Avatar
@@ -97,7 +97,7 @@ const Page = () => {
           <LoadingScreen />
         ) : (
           <Suspense fallback={<LoadingScreen />}>
-            <ProfessorCard props={filteredProfessors} />
+            <ProfessorList props={filteredProfessors} />
           </Suspense>
         )}
       </div>
