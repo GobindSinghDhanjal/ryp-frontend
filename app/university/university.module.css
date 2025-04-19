@@ -1,0 +1,28 @@
+.universityHeader {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.universityImage {
+  height: 100px;
+  width: 100px;
+  margin: auto;
+}
+
+.universityHeader h2 {
+  font-weight: 600;
+}
+
+.image {
+  flex: 1;
+}
+
+.details {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+}

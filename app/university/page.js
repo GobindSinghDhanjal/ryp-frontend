@@ -3,8 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import SearchBox from "../components/SearchBox";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Unstable_Grid2";
+import styles from "./university.module.css";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
 import LoadingScreen from "../components/LoadingScreen";
 import { Avatar } from "@mui/material";
@@ -49,15 +48,18 @@ const Page = () => {
         }
         const professorsData = await professorsResponse.json();
 
-        // Calculate remaining time for minimum loading
-        const elapsedTime = Date.now() - startTime;
-        const remainingTime = Math.max(100 - elapsedTime, 0);
+        setFilteredProfessors(professorsData);
+        setLoading(false);
 
-        // Set filteredProfessors after minimum loading time
-        setTimeout(() => {
-          setFilteredProfessors(professorsData);
-          setLoading(false);
-        }, remainingTime);
+        // // Calculate remaining time for minimum loading
+        // const elapsedTime = Date.now() - startTime;
+        // const remainingTime = Math.max(100 - elapsedTime, 0);
+
+        // // Set filteredProfessors after minimum loading time
+        // setTimeout(() => {
+        //   setFilteredProfessors(professorsData);
+        //   setLoading(false);
+        // }, remainingTime);
       } catch (error) {
         console.error("Error fetching university data:", error);
         router.push("/");
@@ -74,21 +76,18 @@ const Page = () => {
   return (
     <div className="container">
       <div className="sub-container">
-        <Box sx={{ flexGrow: 1, marginTop: "20px" }}>
-          <Grid container alignItems="center" spacing={0}>
-            <Grid sx={{ justifyItems: "center" }} xs={4}>
-              <Avatar
-                className="professor-detail-avatar"
-                alt={universityData.name}
-                src={universityData.image}
-              />
-            </Grid>
-            <Grid xs={1}></Grid>
-            <Grid xs={7}>
-              <h2>{universityData.name}</h2>
-            </Grid>
-          </Grid>
-        </Box>
+        <div className={styles.universityHeader}>
+          <div className={styles.image}>
+            <Avatar
+              className={styles.universityImage}
+              alt={universityData.name}
+              src={universityData.image}
+            />
+          </div>
+          <div className={styles.details}>
+            <h2>{universityData.name}</h2>
+          </div>
+        </div>
 
         <SearchBox />
 
