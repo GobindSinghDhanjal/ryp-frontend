@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, Suspense } from "react";
-import LoadingScreen from "../components/LoadingScreen"; // Import LoadingScreen
+import LoadingScreen from "../components/LoadingScreen";
 
 const LazyUniversityList = React.lazy(() => import("./UniversityList"));
 
@@ -11,7 +11,9 @@ const Page = () => {
   useEffect(() => {
     const fetchUniversities = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch universities");
         }
