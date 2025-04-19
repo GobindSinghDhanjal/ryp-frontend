@@ -10,6 +10,7 @@
   transition: all 0.25s ease;
   cursor: pointer;
   user-select: none;
+  min-height: 150px;
   -webkit-tap-highlight-color: transparent;
 }
 

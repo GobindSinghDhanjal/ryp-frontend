@@ -20,7 +20,9 @@ export default function ProfessorCard({ prop, onButtonClick }) {
       <div className={styles.details}>
         <h3>{prop.name}</h3>
         <div className={styles.college}>
-          <p>{prop.college.name}</p>
+          <p>
+            {prop.college.name}, {prop.college.university.name}
+          </p>
         </div>
 
         <Rating
