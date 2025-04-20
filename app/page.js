@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Banner from "./components/Banner/Banner";
 import { Divider } from "@mui/material";
-import SearchBox from "./components/SearchBox";
+import SearchBox from "./components/SearchBox/SearchBox";
 import TopUniversities from "./components/TopUniversities/TopUniversities";
 import TopRatedProfessors from "./components/TopRatedProfessors/TopRatedProfessors";
 import MostRatedProfessors from "./components/MostRatedProfessors/MostRatedProfessors";

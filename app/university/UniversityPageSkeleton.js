@@ -2,8 +2,6 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton";
-import SearchBox from "../components/SearchBox";
-import SingleCard from "../components/SingleCard";
 
 const UniversityPageSkeleton = () => {
   return (
@@ -21,7 +19,7 @@ const UniversityPageSkeleton = () => {
         </Box>
 
         <Skeleton variant="text" height={80} />
-        
+
         <Box mt={2}>
           <SingleCardSkeleton />
           <SingleCardSkeleton />

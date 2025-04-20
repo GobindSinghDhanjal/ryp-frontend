@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
-import SearchBox from "../components/SearchBox";
+import SearchBox from "../components/SearchBox/SearchBox";
 import styles from "./university.module.css";
 import UniversityPageSkeleton from "./UniversityPageSkeleton";
 import LoadingScreen from "../components/LoadingScreen";

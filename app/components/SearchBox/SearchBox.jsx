@@ -1,33 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { styled } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { Divider } from "@mui/material";
 import { useRouter } from "next/navigation";
+import styles from "./SearchBox.module.css";
 
 // Styled components
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: "whitesmoke",
   marginLeft: 0,
   width: "100%",
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "black",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -37,12 +23,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
   },
 }));
 
@@ -52,13 +32,13 @@ const SearchResults = styled("div")(({ theme }) => ({
   left: 0,
   zIndex: 999,
   width: "100%",
-  backgroundColor: "#f0f0f0",
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[1],
+  backgroundColor: "white",
+  borderRadius: "10px",
+  boxShadow: "1px 1px 8px #00000022",
   padding: theme.spacing(1),
 }));
 
-export default function SearchBox2() {
+export default function SearchBox() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [professors, setProfessors] = useState([]); // Store all professors data here
@@ -153,79 +133,70 @@ export default function SearchBox2() {
   };
 
   return (
-    <div className="search-box">
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar className="app-bar" position="static">
-          <Toolbar sx={{ padding: 0 }}>
-            <Search ref={inputRef}>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-                value={searchTerm}
-                onChange={handleSearchChange}
-                onFocus={() => setIsSearchOpen(true)} // Open search when input is focused
-                onKeyDown={handleKeyDown}
-              />
-              {isSearchOpen && searchResults.length > 0 && (
-                <SearchResults>
-                  {searchResults.map((result, index) =>
-                    result.college ? (
-                      <div
-                        key={index}
-                        onClick={() => handleResultClick(result)}
-                        style={{
-                          cursor: "pointer",
-                          padding: "5px",
-                          backgroundColor:
-                            index === selectedIndex
-                              ? "lightblue"
-                              : "transparent",
-                        }}
-                      >
-                        <Typography
-                          variant="body1"
-                          sx={{ color: "black" }}
-                          style={{
-                            fontWeight:
-                              index === selectedIndex ? "bold" : "normal",
-                          }}
-                        >
-                          {result.name}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{ fontSize: 12, color: "grey" }}
-                        >
-                          {result.college.name},{" "}
-                          {result.college.university.name}
-                        </Typography>
-                        <Divider sx={{ mt: 1, mb: 0 }} />
-                      </div>
-                    ) : null
-                  )}
-                  <Link href="/addprofessor">
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        cursor: "pointer",
-                        color: "blue",
-                        textAlign: "center",
-                        marginTop: "10px",
-                        fontSize: 12,
-                      }}
-                    >
-                      Didn't find your professor? <br /> Add Now
-                    </Typography>
-                  </Link>
-                </SearchResults>
-              )}
-            </Search>
-          </Toolbar>
-        </AppBar>
-      </Box>
+    <div className={styles.container}>
+      <Search className={styles.search} ref={inputRef}>
+        <div className={styles.searchIconWrapper}>
+          <SearchIcon />
+        </div>
+        <StyledInputBase
+          className={styles.searchInput}
+          placeholder="Search…"
+          inputProps={{ "aria-label": "search" }}
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onFocus={() => setIsSearchOpen(true)} // Open search when input is focused
+          onKeyDown={handleKeyDown}
+        />
+        {isSearchOpen && searchResults.length > 0 && (
+          <SearchResults>
+            {searchResults.map((result, index) =>
+              result.college ? (
+                <div
+                  key={index}
+                  onClick={() => handleResultClick(result)}
+                  style={{
+                    cursor: "pointer",
+                    padding: "5px",
+                    backgroundColor:
+                      index === selectedIndex ? "lightblue" : "transparent",
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    sx={{ color: "black" }}
+                    style={{
+                      fontWeight: index === selectedIndex ? "bold" : "normal",
+                    }}
+                  >
+                    {result.name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontSize: 12, color: "grey" }}
+                  >
+                    {result.college.name}, {result.college.university.name}
+                  </Typography>
+                  <Divider sx={{ mt: 1, mb: 0 }} />
+                </div>
+              ) : null
+            )}
+            <Link href="/addprofessor">
+              <Typography
+                variant="body1"
+                sx={{
+                  cursor: "pointer",
+                  color: "blue",
+                  textAlign: "center",
+                  marginTop: "10px",
+                  fontSize: 12,
+                }}
+              >
+                Didn't find your professor? <br /> Add Now
+              </Typography>
+            </Link>
+          </SearchResults>
+        )}
+      </Search>
     </div>
   );
 }
