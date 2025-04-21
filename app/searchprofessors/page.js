@@ -2,8 +2,8 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import LoadingScreen from "../components/LoadingScreen";
-import SingleCard from "../components/SingleCard";
 import Link from "next/link";
+import ProfessorList from "../components/ProfessorList/ProfessorList";
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -48,7 +48,7 @@ const Page = () => {
           <div className="professors">
             {professors && professors.length > 0 ? (
               <Suspense fallback={<LoadingScreen />}>
-                <SingleCard props={professors} />
+                <ProfessorList props={professors} />
               </Suspense>
             ) : (
               <div style={{ textAlign: "center" }}>
