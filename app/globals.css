@@ -236,8 +236,8 @@ footer hr {
 .social-icons a {
   /* margin-left: 10px; */
   text-decoration: none;
-  width: 16px;
-  height: 16px;
+  width: 20px !important;
+  height: 20px !important;
   color: #cacaca;
 }
 
@@ -248,8 +248,8 @@ footer hr {
 }
 
 .social-icon{
-  width: 16px;
-  height: 16px;
+  width: 20px !important;
+  height: 20px !important;
 }
 
 .loading-heading {
