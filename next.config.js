@@ -1,7 +1,7 @@
 module.exports = {
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
-  },
+  // experimental: {
+  //   missingSuspenseWithCSRBailout: false,
+  // },
 };
 
 // /** @type {import('next').NextConfig} */

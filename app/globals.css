@@ -225,13 +225,31 @@ footer hr {
 }
 
 .social-icons {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin: auto;
+  justify-content: center;
 }
 
 .social-icons a {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   text-decoration: none;
+  width: 20px;
+  height: 20px;
   color: #cacaca;
+}
+
+.social-icons p,
+.social-icons a {
+  margin: 0;
+  padding: 0;
+}
+
+.social-icon{
+  width: 20px;
+  height: 20px;
 }
 
 .loading-heading {

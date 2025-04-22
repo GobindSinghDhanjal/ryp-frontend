@@ -1,7 +1,8 @@
 // Footer.js
 
 import React from "react";
-import '@fortawesome/fontawesome-free/css/all.css';
+// import "@fortawesome/fontawesome-free/css/all.css";
+import { Instagram } from "@mui/icons-material";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,17 +25,17 @@ const Footer = () => {
 
         <div className="footer-section">
           <h3>Follow Us</h3>
-          <p>Stay connected on social media:</p>
+
           <div className="social-icons">
-            {/* Add your social media icons and links here */}
-            {/* <a href="#" rel="noopener noreferrer">
-              <i className="fab fa-facebook"></i>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-twitter"></i>
-            </a> */}
-            <a href="https://www.instagram.com/rateyourprofessor/" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-instagram"></i>
+            <p>Stay connected on social media:</p>
+
+            <a
+              href="https://www.instagram.com/rateyourprofessor/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {/* <i className="fab fa-instagram"></i> */}
+              <Instagram className="social-icon" />
             </a>
           </div>
         </div>
@@ -58,9 +59,8 @@ const Footer = () => {
       </div>
       <hr />
       <div className="footer-bottom">
-      <p className="version">Version 1.7.0</p>
+        <p className="version">Version 1.7.0</p>
       </div>
-
     </footer>
   );
 };

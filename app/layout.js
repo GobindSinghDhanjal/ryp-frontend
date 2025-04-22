@@ -12,6 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://www.rateyourprofessor.in/"),
   title: {
     default: "Rate Your Professor",
     template: "%s - Rate Your Professor",
