@@ -1,5 +1,6 @@
+import { Suspense } from "react";
 import ProfessorPage from "./ProfessorPage";
-import { Metadata } from "next";
+import ProfessorSkeleton from "./ProfessorSkeleton";
 
 export async function generateMetadata({ searchParams }) {
   const id = searchParams?.search;
@@ -47,5 +48,9 @@ export async function generateMetadata({ searchParams }) {
 }
 
 export default function ProfessorPageWrapper() {
-  return <ProfessorPage />;
+  return (
+    <Suspense fallback={<ProfessorSkeleton />}>
+      <ProfessorPage />
+    </Suspense>
+  );
 }
