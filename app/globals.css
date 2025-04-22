@@ -3,6 +3,11 @@ body {
   font-family: var(--font-poppins);
 }
 
+*,
+MuiTypography-root {
+  font-family: var(--font-poppins) !important;
+}
+
 #app {
   height: 100%;
 }
@@ -28,8 +33,6 @@ body {
   height: 100%;
   object-fit: cover;
 }
-
-
 
 .professor-detail-avatar {
   width: 120px !important;
@@ -58,7 +61,6 @@ body {
   padding: 5px;
   margin: 2px auto;
 }
-
 
 .banner-mobile {
   display: none !important;
