@@ -27,7 +27,7 @@ const Page = () => {
             setProfessors(data);
             console.log(data);
             setLoading(false);
-          }, 2000);
+          }, 1000);
         })
         .catch((error) => {
           console.error("Error:", error);
