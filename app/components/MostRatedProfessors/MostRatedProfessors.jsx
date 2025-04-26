@@ -7,7 +7,7 @@ export default function MostRatedProfessors({ props }) {
   const router = useRouter();
 
   function onButtonClick(prop) {
-    router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
+    router.push(`/professor/${prop._id}`);
   }
 
   if (!props || !props.length) {
@@ -46,7 +46,7 @@ export default function MostRatedProfessors({ props }) {
               <p>{prop.name}</p>
 
               <p className={styles.ratingCount}>
-               ({prop.feedbackCount} Rating{prop.feedbackCount !== 1 && "s"})
+                ({prop.feedbackCount} Rating{prop.feedbackCount !== 1 && "s"})
               </p>
             </div>
           )

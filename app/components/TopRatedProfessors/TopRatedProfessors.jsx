@@ -7,8 +7,12 @@ export default function TopRatedProfessors({ props }) {
   const router = useRouter();
 
   function onButtonClick(prop) {
-    router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
+    router.push(`/professor/${prop._id}`);
   }
+
+  // function onButtonClick(prop) {
+  //   router.push(`/professor?search=${encodeURIComponent(prop._id)}`);
+  // }
 
   if (!props || !props.length) {
     return (
