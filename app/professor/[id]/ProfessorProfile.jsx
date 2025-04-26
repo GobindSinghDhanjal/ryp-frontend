@@ -1,19 +1,8 @@
 import { Avatar, Box, Grid, Rating, Skeleton } from "@mui/material";
 import React from "react";
 import ProfRating from "./ProfRating";
-// import dynamic from "next/dynamic";
 
-// const ProfRating = dynamic(() => import("./ProfRating"), {
-//   ssr: false,
-//   loading: () => (
-//     <>
-//       <Skeleton variant="text" width={120} height={30} />
-//       <Skeleton variant="text" width={80} height={20} />
-//     </>
-//   ),
-// });
-
-const ProfessorProfile = ({ professor, averageRating, numberOfRatings }) => {
+const ProfessorProfile = ({ professor }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container alignItems="center" spacing={0}>
