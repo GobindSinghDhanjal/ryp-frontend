@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Offers",
+};
+
 const page = () => {
   return (
     <div className="container">
@@ -8,7 +12,7 @@ const page = () => {
           display: "flex",
           alignItems: "center",
           textAlign: "center",
-          justifyContent:"center"
+          justifyContent: "center",
         }}
       >
         <h1>We will soon upload student offers</h1>

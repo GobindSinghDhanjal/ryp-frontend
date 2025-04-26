@@ -15,7 +15,7 @@ export const metadata = {
   metadataBase: new URL("https://www.rateyourprofessor.in/"),
   title: {
     default: "Rate Your Professor",
-    template: "%s - Rate Your Professor",
+    template: "%s | Rate Your Professor",
   },
   description:
     "Welcome to RateYourProfessor, the platform where students have the power to share their valuable insights and experiences with professors anonymously, without the need for login or signup.",
