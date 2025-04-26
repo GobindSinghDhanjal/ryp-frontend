@@ -1,9 +1,7 @@
-import { Suspense } from "react";
-import ProfessorSkeleton from "../ProfessorSkeleton";
 import ProfessorPage from "./ProfessorPage";
 
 export async function generateMetadata({ params }) {
-  const { id } = params; // no await here
+  const { id } = params;
 
   if (!id) {
     return {
@@ -50,8 +48,7 @@ export async function generateMetadata({ params }) {
 async function getProfessor(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`,
-      { next: { revalidate: 60 } }
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`
     );
     if (!response.ok) throw new Error("Professor not found");
     return await response.json();
