@@ -12,8 +12,7 @@ export async function generateMetadata({ params }) {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`,
-      { next: { revalidate: 60 } }
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`
     );
 
     if (!response.ok) {
