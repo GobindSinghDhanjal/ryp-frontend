@@ -12,7 +12,8 @@ export async function generateMetadata({ params }) {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`,
+      { cache: "no-store" }
     );
 
     if (!response.ok) {
@@ -47,7 +48,8 @@ export async function generateMetadata({ params }) {
 async function getProfessor(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`,
+      { cache: "no-store" }
     );
     if (!response.ok) throw new Error("Professor not found");
     return await response.json();
@@ -58,7 +60,7 @@ async function getProfessor(id) {
 }
 
 export default async function ProfessorPageWrapper({ params }) {
-  const { id } = await params;
+  const { id } = params;
   const professor = await getProfessor(id);
 
   if (!professor) {
