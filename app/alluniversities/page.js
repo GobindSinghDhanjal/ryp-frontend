@@ -1,51 +1,22 @@
-"use client";
-import React, { useState, useEffect, Suspense } from "react";
-import LoadingScreen from "../components/LoadingScreen";
+import Universities from "./Universities";
 
-const LazyUniversityList = React.lazy(() => import("./UniversityList"));
+export const metadata = {
+  title: "Universities",
+  description:
+    "Browse a list of universities on RateYourProfessor and explore student reviews and ratings to help you make informed academic decisions.",
+  keywords: [
+    "universities",
+    "student reviews",
+    "professor ratings",
+    "university list",
+    "college feedback",
+    "RateYourProfessor",
+    "RateMyProfessor",
+  ],
+};
 
 const Page = () => {
-  const [universities, setUniversities] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchUniversities = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch universities");
-        }
-        const data = await response.json();
-        setUniversities(data);
-
-        // Simulate loading for at least 2 seconds
-        setTimeout(() => {
-          setLoading(false);
-        }, 100);
-      } catch (error) {
-        console.error("Error fetching universities:", error);
-      }
-    };
-
-    fetchUniversities();
-  }, []);
-
-  return (
-    <div className="container">
-      <div className="sub-container">
-        <h2>Universities</h2>
-        <Suspense fallback={<LoadingScreen />}>
-          {loading ? (
-            <LoadingScreen />
-          ) : (
-            <LazyUniversityList universities={universities} />
-          )}
-        </Suspense>
-      </div>
-    </div>
-  );
+  return <Universities />;
 };
 
 export default Page;
