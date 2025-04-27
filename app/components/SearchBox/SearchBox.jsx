@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";

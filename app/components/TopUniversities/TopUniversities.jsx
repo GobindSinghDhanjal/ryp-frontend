@@ -7,7 +7,7 @@ export default function TopUniversities({ props }) {
   const router = useRouter();
 
   function onButtonClick(prop) {
-    router.push(`/university?search=${encodeURIComponent(prop._id)}`);
+    router.push(`/university/${prop._id}`);
   }
 
   if (!props || !props.length) {

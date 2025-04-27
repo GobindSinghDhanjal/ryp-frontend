@@ -8,7 +8,7 @@ const UniversityList = ({ universities }) => {
   const router = useRouter();
 
   function onButtonClick(id) {
-    router.push(`/university?search=${encodeURIComponent(id)}`);
+    router.push(`/university/${id}`);
   }
 
   return (

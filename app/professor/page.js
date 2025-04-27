@@ -25,7 +25,7 @@ export async function generateMetadata({ searchParams }) {
     const professor = await response.json();
 
     return {
-      title: `${professor.name} - Rate Your Professor`,
+      title: `${professor.name}`,
       description: `Read reviews and ratings for ${professor.name}, a professor at ${professor.college.name}, ${professor.college.university.name}.`,
       keywords: `${professor.name}, ${professor.title}, professor ratings, rate your professor`,
       metadataBase: new URL("https://www.rateyourprofessor.in"),
