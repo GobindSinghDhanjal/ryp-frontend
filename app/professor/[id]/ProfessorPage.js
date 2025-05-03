@@ -1,14 +1,11 @@
 "use client";
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useState } from "react";
 import ProfessorSkeleton from "./ProfessorSkeleton";
 import SuccessPage from "./RatingSuccess";
-// import Head from "next/head";
-import { Skeleton } from "@mui/material";
 import StudentRating from "./StudentRating";
-
-const LazyProfessorRating = React.lazy(() => import("./ProfessorRating"));
-// const LazyStudentRating = React.lazy(() => import("./StudentRating"));
-const LazyProfessorProfile = React.lazy(() => import("./ProfessorProfile"));
+import ProfessorRating from "./ProfessorRating";
+import ProfessorProfile from "@/app/components/ProfessorProfile/ProfessorProfile";
+// import ProfessorProfile from "./ProfessorProfile";
 
 const ProfessorPage = ({ professor }) => {
   const [success, setSuccess] = useState(false);
@@ -25,16 +22,13 @@ const ProfessorPage = ({ professor }) => {
     <>
       <div className="professor container">
         <div className="sub-container">
-          {/* Lazy load ProfessorProfile component */}
-          <LazyProfessorProfile professor={professor} />
+          {/* <ProfessorProfile professor={professor} /> */}
+          <ProfessorProfile professor={professor} />
+
           <br />
           <hr />
-          {/* Lazy load ProfessorRating component */}
-          <Suspense
-            fallback={<Skeleton variant="text" height={280} width="100%" />}
-          >
-            <LazyProfessorRating id={professor._id} setSuccess={setSuccess} />
-          </Suspense>
+
+          <ProfessorRating id={professor._id} setSuccess={setSuccess} />
           <br />
           <hr />
           <h3>Student Ratings</h3>

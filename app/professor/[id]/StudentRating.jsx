@@ -39,7 +39,7 @@ const StudentRating = ({ professorId }) => {
             key={index}
             variant="rectangular"
             height={120}
-            sx={{ my: 2 }}
+            sx={{ my: 2, borderRadius: "10px" }}
           />
         ))}
       </>

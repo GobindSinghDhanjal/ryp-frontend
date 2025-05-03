@@ -23,17 +23,17 @@ export async function generateMetadata({ params }) {
     const professor = await response.json();
 
     return {
-      title: `${professor.name}`,
+      title: `${professor.name} | ${professor.college.name}`,
       description: `Read reviews and ratings for ${professor.name}, a professor at ${professor.college.name}, ${professor.college.university.name}.`,
-      keywords: `${professor.name}, ${professor.title}, professor ratings, rate your professor`,
-      metadataBase: new URL("https://www.rateyourprofessor.in"),
+      keywords: `${professor.name}, ${professor.college.name}, professor reviews, rate professors, rate my professor, student reviews, professor feedback, professor ratings India, university professors, college faculty reviews`,
+      metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
       openGraph: {
-        title: `${professor.name} | Rate Your Professor`,
+        title: `${professor.name} | ${professor.college.name}`,
         description: `Read reviews and ratings for ${professor.name}, a professor at ${professor.college.name}, ${professor.college.university.name}.`,
-        images: [
-          `https://www.rateyourprofessor.in/professor-images/${professor._id}.jpg`,
-        ],
-        url: `https://www.rateyourprofessor.in/professor?search=${professor._id}`,
+        images: [`${professor.image}`],
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/professor/${professor._id}`,
+        type: "profile",
+        siteName: "Rate Your Professor",
       },
     };
   } catch (error) {
