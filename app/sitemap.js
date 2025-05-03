@@ -6,7 +6,7 @@ export default async function sitemap() {
   try {
     const resProfessors = await fetch(
       `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors`,
-      { cache: "force-cache" }
+      { cache: "no-cache" }
     );
     professors = await resProfessors.json();
   } catch (error) {
