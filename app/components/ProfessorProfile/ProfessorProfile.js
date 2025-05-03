@@ -1,6 +1,5 @@
 import ProfRating from "@/app/professor/[id]/ProfRating";
 import { Avatar } from "@mui/material";
-import React from "react";
 import styles from "./ProfessorProfile.module.css";
 
 const ProfessorProfile = ({ professor }) => {

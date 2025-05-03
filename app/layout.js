@@ -19,6 +19,16 @@ export const metadata = {
   },
   description:
     "Welcome to RateYourProfessor, the platform where students have the power to share their valuable insights and experiences with professors anonymously, without the need for login or signup.",
+  keywords: [
+    "rate your professor",
+    "professor reviews",
+    "student feedback",
+    "college ratings",
+    "university reviews",
+    "RateMyProfessor India",
+    "anonymous professor reviews",
+    "student professor ratings",
+  ],
 };
 
 export default function RootLayout({ children }) {

@@ -1,19 +1,27 @@
 import ProfessorPage from "./ProfessorPage";
 
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors`
+    );
+    const data = await res.json();
+
+    return data.map((prof) => ({
+      id: prof._id,
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }) {
   const { id } = params;
 
-  if (!id) {
-    return {
-      title: "Professor Not Found",
-      description: "No professor data available.",
-    };
-  }
-
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`,
-      { cache: "no-store" }
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`
     );
 
     if (!response.ok) {
@@ -48,8 +56,7 @@ export async function generateMetadata({ params }) {
 async function getProfessor(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`,
-      { cache: "no-store" }
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/${id}`
     );
     if (!response.ok) throw new Error("Professor not found");
     return await response.json();

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   Box,
@@ -10,8 +11,9 @@ import {
 import Filter from "bad-words"; // Import the bad-words library
 import { additionalBadWords } from "@/public/data/badwords";
 import BasicAlerts from "@/app/reviewaddprofessor/BasicAlert";
+import { useRouter } from "next/navigation";
 
-const ProfessorRating = ({ id, setSuccess }) => {
+const ProfessorRating = ({ id }) => {
   const [value, setValue] = useState(0);
   const [comment, setComment] = useState("");
   const [basicAlert, setBasicAlert] = useState({ display: false, alert: {} });
@@ -20,6 +22,8 @@ const ProfessorRating = ({ id, setSuccess }) => {
     alert: {},
   });
   const [loading, setLoading] = useState(false); // Loading state
+
+  const router = useRouter();
 
   // Create a new instance of the bad-words filter
   const filter = new Filter();
@@ -91,7 +95,8 @@ const ProfessorRating = ({ id, setSuccess }) => {
       console.log("Rating submitted successfully : ");
       setValue(0);
       setComment("");
-      setSuccess(true);
+      router.push("/success"); // Redirect to success page
+      // setSuccess(true);
     } catch (error) {
       console.error("Error submitting rating:", error.message);
     } finally {
