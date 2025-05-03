@@ -111,9 +111,7 @@ export default function SearchBox() {
 
   const handleResultClick = (result) => {
     setSearchTerm(result.name);
-    window.location.href = `/professor?search=${encodeURIComponent(
-      result._id
-    )}`;
+    window.location.href = `/professor/${result._id}`;
   };
 
   const handleKeyDown = (event) => {
