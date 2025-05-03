@@ -21,7 +21,7 @@ export async function GET(req, res) {
           select: "name", // Selecting only the name field from the University document
         },
       })
-      .select("name image college university");
+      .select("name image createdAt updatedAt college university");
 
     // Increment the count by 1
     await Count.findOneAndUpdate(

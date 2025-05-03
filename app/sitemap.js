@@ -31,6 +31,7 @@ export default async function sitemap() {
     },
     {
       url: `${baseUrl}/alluniversities`,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
@@ -41,10 +42,12 @@ export default async function sitemap() {
     },
     {
       url: `${baseUrl}/about`,
+      changeFrequency: "yearly",
       priority: 0.6,
     },
     ...professors.map((professor) => ({
       url: `${baseUrl}/professor/${professor._id}`,
+      lastModified: professor.updatedAt || professor.createdAt || new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     })),
