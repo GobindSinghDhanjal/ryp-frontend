@@ -39,26 +39,11 @@ const AddProfessor = () => {
     "Ph.D. Scholar",
   ];
 
-  // const handleChange = (event, value) => {
-  //   setProfessorData((prevData) => ({
-  //     ...prevData,
-  //     [event.target.name]: value || event.target.value,
-  //   }));
-  // };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setProfessorData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setProfessorData((prevData) => ({
-      ...prevData,
-      image: file,
     }));
   };
 
@@ -124,16 +109,6 @@ const AddProfessor = () => {
             multiline
             maxRows={4}
           />
-
-          {/* <Autocomplete
-            fullWidth
-            value={professorData.title}
-            onChange={(event, value) => handleChange(event, value)}
-            options={titleOptions}
-            renderInput={(params) => (
-              <TextField {...params} label="Title" name="title" required />
-            )}
-          /> */}
 
           <FormControl sx={{ marginTop: 2 }} fullWidth>
             <InputLabel id="title-label">Title</InputLabel>
@@ -213,26 +188,7 @@ const AddProfessor = () => {
             multiline
             maxRows={4}
           />
-          {/* <input
-            accept="image/*"
-            id="image-upload"
-            multiple={false}
-            type="file"
-            style={{ display: "none" }}
-            onChange={handleImageChange}
-          /> */}
-          {/* <label htmlFor="image-upload">
-            <Button variant="contained" component="span">
-              Upload Image
-            </Button>
-          </label>
-          {professorData.image && (
-            <img
-              src={URL.createObjectURL(professorData.image)}
-              alt="Professor"
-              style={{ marginTop: "10px", maxWidth: "100%" }}
-            />
-          )} */}
+
           <Box mt={2}>
             <Button type="submit" variant="contained" color="primary">
               Add Professor

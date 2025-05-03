@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 const universitySchema = new mongoose.Schema({
   name: { type: String, required: true },
+  abbreviation: { type: String },
   description: { type: String,},
   location: { type: String, },
   establishedYear: { type: Number },

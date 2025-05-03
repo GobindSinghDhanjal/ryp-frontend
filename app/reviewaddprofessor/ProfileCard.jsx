@@ -42,7 +42,16 @@ const ProfileCard = ({ handleClick, profile }) => {
   };
 
   // const { id, name, title, gender, college, university, image } = profile;
-  const { id, name, title, gender, college, university, image } = editedProfile;
+  const {
+    id,
+    name,
+    title,
+    gender,
+    college,
+    university,
+    image,
+    universityImageUrl,
+  } = editedProfile;
   const renderAvatar = () => {
     if (image != null) {
       return (
@@ -110,6 +119,57 @@ const ProfileCard = ({ handleClick, profile }) => {
     }
   };
 
+  // const handleAddButtonClick = async () => {
+  //   try {
+  //     const data = {
+  //       id,
+  //       name,
+  //       title,
+  //       gender,
+  //       collegeName: college,
+  //       universityName: university,
+  //       passcode: textFieldValue,
+  //     };
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(data),
+  //       }
+  //     );
+  //     if (!response.ok) {
+  //       setBasicAlert({
+  //         display: true,
+  //         alert: {
+  //           severity: "error",
+  //           message: "Failed to add professor",
+  //         },
+  //       });
+  //       throw new Error("Failed to add professor");
+  //     }
+  //     setTextFieldValue("");
+  //     setBasicAlert({
+  //       display: true,
+  //       alert: {
+  //         severity: "success",
+  //         message: "Professor added successfully",
+  //       },
+  //     });
+  //     handleClick(data);
+  //   } catch (error) {
+  //     setBasicAlert({
+  //       display: true,
+  //       alert: {
+  //         severity: "error",
+  //         message: "Error adding professor:" + error.message,
+  //       },
+  //     });
+  //   }
+  // };
+
   const handleAddButtonClick = async () => {
     try {
       const data = {
@@ -119,8 +179,10 @@ const ProfileCard = ({ handleClick, profile }) => {
         gender,
         collegeName: college,
         universityName: university,
+        universityImageUrl: universityImageUrl,
         passcode: textFieldValue,
       };
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors`,
         {
@@ -131,16 +193,24 @@ const ProfileCard = ({ handleClick, profile }) => {
           body: JSON.stringify(data),
         }
       );
+
+      // Check if the response is not OK
       if (!response.ok) {
+        const errorData = await response.json();
+        const errorMessage = errorData?.msg || "Failed to add professor";
+
         setBasicAlert({
           display: true,
           alert: {
             severity: "error",
-            message: "Failed to add professor",
+            message: errorMessage,
           },
         });
-        throw new Error("Failed to add professor");
+
+        throw new Error(errorMessage);
       }
+
+      // Reset text field and show success alert
       setTextFieldValue("");
       setBasicAlert({
         display: true,
@@ -149,13 +219,15 @@ const ProfileCard = ({ handleClick, profile }) => {
           message: "Professor added successfully",
         },
       });
-      handleClick(data);
+
+      handleClick(data); // Assuming this updates the UI or list
     } catch (error) {
+      // If error is thrown, show error alert with the error message
       setBasicAlert({
         display: true,
         alert: {
           severity: "error",
-          message: "Error adding professor:" + error.message,
+          message: "Error adding professor: " + error.message,
         },
       });
     }
@@ -238,6 +310,40 @@ const ProfileCard = ({ handleClick, profile }) => {
               onChange={(e) => handleFieldChange(e, "university")}
               multiline
               maxRows={4}
+            />
+
+            <TextField
+              fullWidth
+              id="universityImageUrl"
+              sx={{ mt: 3 }}
+              label="University Image URL"
+              variant="outlined"
+              value={universityImageUrl}
+              onChange={(e) => handleFieldChange(e, "universityImageUrl")}
+              multiline
+              maxRows={4}
+            />
+
+            <TextField
+              fullWidth
+              id="department"
+              sx={{ mt: 3 }}
+              label="Department"
+              variant="outlined"
+              value={editedProfile.department || ""}
+              onChange={(e) => handleFieldChange(e, "department")}
+              multiline
+              maxRows={4}
+            />
+
+            <TextField
+              fullWidth
+              id="subjects"
+              sx={{ mt: 3 }}
+              label="Subjects (comma separated)"
+              variant="outlined"
+              value={editedProfile.subjects || ""}
+              onChange={(e) => handleFieldChange(e, "subjects")}
             />
           </Grid>
         </Grid>

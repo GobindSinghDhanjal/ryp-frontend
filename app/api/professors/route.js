@@ -55,6 +55,7 @@ export async function POST(req, res) {
     subjects,
     collegeName,
     universityName,
+    universityImageUrl,
     passcode,
     id,
   } = await req.json(); // Get data from the request body
@@ -71,8 +72,23 @@ export async function POST(req, res) {
 
     // Check or create the University
     let university = await University.findOne({ name: universityName });
+    // if (!university) {
+    //   university = new University({ name: universityName });
+    //   university = await university.save();
+    // }
+
     if (!university) {
-      university = new University({ name: universityName });
+      if (!universityImageUrl) {
+        return new Response(JSON.stringify({ msg: "Missing universityImageUrl for new university" }), {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+
+      university = new University({
+        name: universityName,
+        image: universityImageUrl,
+      });
       university = await university.save();
     }
 
