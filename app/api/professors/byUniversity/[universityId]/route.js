@@ -10,19 +10,20 @@ export async function GET(req, { params }) {
   try {
     await dbConnect();
 
-    // Fetch all professors and populate college and university details
     const professors = await Professor.find()
       .populate({
         path: "college",
-        match: { university: universityId },
-        populate: { path: "university" },
+        match: { university: universityId }, // Filter colleges by universityId
+        populate: { path: "university" }, // Populate university details (if needed)
       })
+      .collation({ locale: "en", strength: 1 })
+      .sort({ name: 1 }) // Sort professors by name in ascending order
       .exec();
 
     // Filter out professors whose college is not associated with the specified universityId
-    const filteredProfessors = professors
-      .filter((professor) => professor.college !== null)
-      .sort((a, b) => a.name.localeCompare(b.name));
+    const filteredProfessors = professors.filter(
+      (professor) => professor.college !== null
+    );
 
     return NextResponse.json(filteredProfessors);
   } catch (error) {

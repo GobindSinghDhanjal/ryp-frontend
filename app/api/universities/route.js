@@ -23,7 +23,9 @@ export async function GET() {
     await dbConnect();
 
     // Fetch all universities
-    const universities = await University.find();
+    const universities = await University.find()
+      .collation({ locale: "en", strength: 1 })
+      .sort({ name: 1 });
     return NextResponse.json(universities);
   } catch (err) {
     return NextResponse.json({ message: err.message }, { status: 500 });
