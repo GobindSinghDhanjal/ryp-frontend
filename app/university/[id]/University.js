@@ -23,14 +23,6 @@ const University = ({ university }) => {
         <SearchBox />
 
         <FilteredProfessors universityId={university._id} />
-
-        {/* {loading ? (
-          <LoadingScreen />
-        ) : (
-          <Suspense fallback={<LoadingScreen />}>
-            <ProfessorList props={filteredProfessors} />
-          </Suspense>
-        )} */}
       </div>
     </div>
   );

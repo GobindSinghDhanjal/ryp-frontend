@@ -20,9 +20,9 @@ export async function GET(req, { params }) {
       .exec();
 
     // Filter out professors whose college is not associated with the specified universityId
-    const filteredProfessors = professors.filter(
-      (professor) => professor.college !== null
-    );
+    const filteredProfessors = professors
+      .filter((professor) => professor.college !== null)
+      .sort((a, b) => a.name.localeCompare(b.name));
 
     return NextResponse.json(filteredProfessors);
   } catch (error) {
