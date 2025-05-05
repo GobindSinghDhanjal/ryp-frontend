@@ -1,19 +1,6 @@
 import { notFound } from "next/navigation";
 import University from "./University";
 
-async function getUniversity(id) {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities/${id}`
-    );
-    if (!response.ok) throw new Error("University not found");
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching university:", error);
-    return null;
-  }
-}
-
 export async function generateMetadata({ params }) {
   const university = await getUniversity(params.id);
 
@@ -55,6 +42,19 @@ export async function generateStaticParams() {
   } catch (error) {
     console.error("Error fetching universities for static params:", error);
     return [];
+  }
+}
+
+async function getUniversity(id) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/universities/${id}`
+    );
+    if (!response.ok) throw new Error("University not found");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching university:", error);
+    return null;
   }
 }
 
