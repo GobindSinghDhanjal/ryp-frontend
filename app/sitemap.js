@@ -48,12 +48,12 @@ export default async function sitemap() {
     ...professors.map((professor) => ({
       url: `${baseUrl}/professor/${professor._id}`,
       lastModified: professor.updatedAt || professor.createdAt || new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "daily",
       priority: 0.7,
     })),
     ...universities.map((university) => ({
       url: `${baseUrl}/university/${university._id}`,
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 0.7,
     })),
   ];

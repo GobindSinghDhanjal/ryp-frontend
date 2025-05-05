@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import University from "./University";
 
 async function getUniversity(id) {
@@ -62,7 +63,7 @@ const Page = async ({ params }) => {
   const university = await getUniversity(id);
 
   if (!university) {
-    return <div>University not found</div>;
+    notFound();
   }
 
   return <University university={university} />;
