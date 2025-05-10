@@ -1,3 +1,4 @@
+"use client";
 import { useRouter } from "next/navigation";
 import styles from "./ProfessorList.module.css";
 import ProfessorCard from "../ProfessorCard/ProfessorCard";

@@ -58,15 +58,34 @@ async function getUniversity(id) {
   }
 }
 
+async function getProfessorsByUniversity(id) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/byUniversity/${id}`,
+      { next: { revalidate: 3600 } }
+    );
+    if (!res.ok) throw new Error();
+    return await res.json();
+  } catch {
+    return [];
+  }
+}
+
 const Page = async ({ params }) => {
-  const { id } = params;
+  const { id } = await params;
   const university = await getUniversity(id);
+  const professors = await getProfessorsByUniversity(id);
 
   if (!university) {
-    notFound();
+    return (
+      <div>
+        <h1>University not found</h1>
+        <p>Please check the URL or go back to the homepage.</p>
+      </div>
+    );
   }
 
-  return <University university={university} />;
+  return <University university={university} professors={professors} />;
 };
 
 export default Page;

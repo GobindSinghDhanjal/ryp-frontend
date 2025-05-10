@@ -3,7 +3,7 @@ import { Avatar } from "@mui/material";
 import FilteredProfessors from "./FilteredProfessors";
 import SearchBox from "@/app/components/SearchBox/SearchBox";
 
-const University = ({ university }) => {
+const University = ({ university, professors }) => {
   return (
     <div className="container">
       <div className="sub-container">
@@ -22,7 +22,8 @@ const University = ({ university }) => {
 
         <SearchBox />
 
-        <FilteredProfessors universityId={university._id} />
+        {/* <FilteredProfessors universityId={university._id} /> */}
+        <FilteredProfessors professors={professors} />
       </div>
     </div>
   );
