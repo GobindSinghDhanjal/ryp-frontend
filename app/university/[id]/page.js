@@ -62,7 +62,7 @@ async function getProfessorsByUniversity(id) {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/professors/byUniversity/${id}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 60 } }
     );
     if (!res.ok) throw new Error();
     return await res.json();
