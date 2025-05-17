@@ -2,7 +2,7 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import DrawerAppBar from "./components/DrawerAppBar/DrawerAppBar";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],

@@ -1,14 +1,12 @@
-// Footer.js
 
-import React from "react";
-// import "@fortawesome/fontawesome-free/css/all.css";
 import { Instagram } from "@mui/icons-material";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <footer className={styles["footer"]}>
       <div className="footer-content">
         <div className="footer-section">
           <h3>Rate Your Professor</h3>
@@ -26,7 +24,7 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Follow Us</h3>
 
-          <div className="social-icons">
+          <div className={styles["social-icons"]}>
             <p>Stay connected on social media:</p>
 
             <a
@@ -34,8 +32,8 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {/* <i className="fab fa-instagram"></i> */}
-              <Instagram className="social-icon" />
+
+              <Instagram className={styles["social-icon"]} />
             </a>
           </div>
         </div>
@@ -44,7 +42,7 @@ const Footer = () => {
       <hr />
 
       <div className="footer-bottom">
-        <p className="disclaimer">
+        <p className={styles["disclaimer"]}>
           NOTICE: RateYourProfessor is a platform that provides information
           based on user-submitted content. We do not guarantee the reliability
           or accuracy of the content within this site. Users are advised to use
@@ -53,13 +51,13 @@ const Footer = () => {
           We strive to maintain the integrity of our platform, but users should
           exercise discretion when relying on the information presented here.
         </p>
-        <p className="copyright">
+        <p className={styles["copyright"]}>
           © {currentYear} RateYourProfessor. All Rights Reserved
         </p>
       </div>
       <hr />
       <div className="footer-bottom">
-        <p className="version">Version 1.7.0</p>
+        <p className={styles["version"]}>Version 1.7.0</p>
       </div>
     </footer>
   );

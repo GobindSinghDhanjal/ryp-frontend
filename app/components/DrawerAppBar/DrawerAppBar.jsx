@@ -45,7 +45,7 @@ function DrawerAppBar(props) {
         onClick={handleClick}
       >
         <Typography
-          className="custom-link"
+          className={styles["custom-link"]}
           variant="h6"
           component="div"
           sx={{ outline: "none" }}
@@ -58,12 +58,12 @@ function DrawerAppBar(props) {
 
   const drawer = (
     <Box
-      className="drawer"
+      className={styles.drawer}
       onClick={handleDrawerToggle}
       sx={{ textAlign: "center", userSelect: "none", outline: "none" }}
     >
       <List sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-        <Link className="custom-link-style" href="/">
+        <Link className={styles["custom-link-style"]} href="/">
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon style={{ minWidth: "42px" }}>
@@ -73,7 +73,7 @@ function DrawerAppBar(props) {
             </ListItemButton>
           </ListItem>
         </Link>
-        <Link className="custom-link-style" href="/alluniversities">
+        <Link className={styles["custom-link-style"]} href="/alluniversities">
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon style={{ minWidth: "42px" }} className="list-item">
@@ -83,7 +83,7 @@ function DrawerAppBar(props) {
             </ListItemButton>
           </ListItem>
         </Link>
-        <Link className="custom-link-style" href="/offers">
+        <Link className={styles["custom-link-style"]} href="/offers">
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon style={{ minWidth: "42px" }}>
@@ -104,7 +104,7 @@ function DrawerAppBar(props) {
                       padding: "5px 10px",
                     }}
                   >
-                    New
+                    Coming Soon
                   </Typography>
                 }
               />
@@ -112,17 +112,7 @@ function DrawerAppBar(props) {
           </ListItem>
         </Link>
 
-        <Link className="custom-link-style" href="/about">
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon style={{ minWidth: "42px" }}>
-                <Info />
-              </ListItemIcon>
-              <ListItemText primary="About" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link href="/notifications" className="custom-link-style">
+        <Link href="/notifications" className={styles["custom-link-style"]}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon style={{ minWidth: "42px" }}>
@@ -131,6 +121,17 @@ function DrawerAppBar(props) {
                 </Badge>
               </ListItemIcon>
               <ListItemText primary="Notifications" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+
+        <Link className={styles["custom-link-style"]} href="/about">
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon style={{ minWidth: "42px" }}>
+                <Info />
+              </ListItemIcon>
+              <ListItemText primary="About" />
             </ListItemButton>
           </ListItem>
         </Link>

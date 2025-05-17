@@ -1,3 +1,5 @@
+export const revalidate = 21600; // 6 hours
+
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
   let professors = [];
@@ -26,7 +28,7 @@ export default async function sitemap() {
   return [
     {
       url: baseUrl,
-      changeFrequency: "yearly",
+      changeFrequency: "monthly",
       priority: 1,
     },
     {
