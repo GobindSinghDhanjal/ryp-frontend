@@ -67,6 +67,6 @@
 }
 
 .disclaimer {
-  font-size: xx-small;
+  font-size: xx-small !important;
   text-align: justify;
 }
