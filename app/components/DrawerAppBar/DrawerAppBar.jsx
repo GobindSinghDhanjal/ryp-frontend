@@ -63,16 +63,6 @@ function DrawerAppBar(props) {
       sx={{ textAlign: "center", userSelect: "none", outline: "none" }}
     >
       <List sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-        <Link className={styles["custom-link-style"]} href="/">
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon style={{ minWidth: "42px" }}>
-                <Home />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
         <Link className={styles["custom-link-style"]} href="/alluniversities">
           <ListItem disablePadding>
             <ListItemButton>
@@ -159,11 +149,6 @@ function DrawerAppBar(props) {
           <RateYourProfessor />
 
           <Box className={styles.menubarItems}>
-            <Button sx={{ color: "#fff" }}>
-              <Link className="custom-desktop-link-style" href="/">
-                Home
-              </Link>
-            </Button>
             <Button sx={{ color: "#fff" }}>
               <Link
                 className="custom-desktop-link-style"
